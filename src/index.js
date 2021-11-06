@@ -3,16 +3,16 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 // import { createBrowserHistory } from "history";
-import { BrowserRouter, Switch } from "react-router-dom";
+import { HashRouter, Switch } from "react-router-dom";
 import "./style/main.scss";
 import "react-toastify/dist/ReactToastify.css";
 // const history = createBrowserHistory();
 ReactDOM.render(
-  <BrowserRouter>
+  <HashRouter>
     <Switch>
       <App />
     </Switch>
-  </BrowserRouter>,
+  </HashRouter>,
   document.getElementById("root")
 );
 
