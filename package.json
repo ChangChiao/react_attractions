@@ -1,0 +1,68 @@
+{
+  "name": "react-attractions",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/react-fontawesome": "^0.1.16",
+    "@reduxjs/toolkit": "^1.6.1",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "axios": "^0.21.4",
+    "cross-env": "^7.0.3",
+    "crypto-js": "^4.1.1",
+    "customize-cra": "^1.0.0",
+    "env-cmd": "^10.1.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "history": "^5.0.1",
+    "node-sass": "^6.0.1",
+    "numeral": "^2.0.6",
+    "prettier": "^2.4.0",
+    "qs": "^6.10.1",
+    "react": "^17.0.2",
+    "react-app-rewired": "^2.1.8",
+    "react-dom": "^17.0.2",
+    "react-hook-form": "^7.15.4",
+    "react-redux": "7.1.0",
+    "react-router-dom": "^5.3.0",
+    "react-scripts": "4.0.3",
+    "react-select": "^4.3.1",
+    "react-toastify": "^8.0.2",
+    "react-useportal": "^1.0.14",
+    "redux": "^4.1.1",
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.3.0",
+    "sass-resources-loader": "^2.2.4",
+    "styled-components": "^5.3.1",
+    "uuid": "^8.3.2",
+    "web-vitals": "^1.0.1"
+  },
+  "scripts": {
+    "lint": "eslint 'src/**/*.js",
+    "fix": "eslint --fix src/**/*.js config-overrides.js",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "build-dev": "env-cmd -f .env.dev react-app-rewired build",
+    "build-prd": "env-cmd -f .env.local react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "react-app-rewire-scss-loaders": "^0.1.3"
+  }
+}

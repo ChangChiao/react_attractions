@@ -1,0 +1,97 @@
+// media-query變數
+$for-T002-Header_max:1850px;
+$for-T002-Header_min:1600px;
+$pc-media:1024px;
+$pcs-media:1023px;
+$pad-media:768px;
+$pads-media:767px;
+$header-media:675px;
+$headers-media:674px;
+$phone-media:480px;
+$phones-media:479px;
+$phonePlus-media:413px;
+$iphone6-media:375px;
+$iphone5-media:320px;
+$iphone5s-media:319px;
+$iphone5-5:350px;
+
+//pc
+@mixin pc-width() {
+    @media all and (min-width: $pc-media)  {
+        @content;
+    }
+}
+
+@mixin pcs-width() {
+    @media all and (max-width: $pc-media) {
+        @content;
+    }
+}
+
+//平板以下
+@mixin pads-width() {
+    @media all and (max-width: $pad-media)  {
+        @content;
+    }
+}
+//平板
+@mixin pad-width() {
+    @media all and (min-width: $pad-media) and (max-width: $pc-media) {
+        @content;
+    }
+}
+
+//大螢幕手機
+@mixin phone-width() {
+    @media all and (min-width: $iphone5-media) and (max-width: $phones-media) {
+        @content;
+    }
+}
+
+//大螢幕手機plus以上
+@mixin plus-phone-width-up() {
+    @media all and (min-width: $phonePlus-media) {
+        @content;
+    }
+}
+//大螢幕手機plus以下
+@mixin plus-phone-width() {
+    @media all and (max-width: $phonePlus-media) {
+        @content;
+    }
+}
+
+//中螢幕手機iphone6以上
+@mixin medium-phone-width-up() {
+    @media all and (min-width: $iphone6-media) {
+        @content;
+    }
+}
+
+//中螢幕手機iphone6以下
+@mixin medium-phone-width() {
+    @media all and (max-width: $iphone6-media) {
+        @content;
+    }
+}
+
+
+//小螢幕手機iphone5-5
+@mixin medium-to-small-phone-width() {
+    @media all and (max-width: $iphone5-5) {
+        @content;
+    }
+}
+
+//小螢幕手機iphone5
+@mixin small-phone-width() {
+    @media all and (max-width: $iphone5-media) {
+        @content;
+    }
+}
+
+@mixin phone-width-up() {
+    @media all and (min-width:$pad-media) {
+        @content;
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "plugins": ["react", "prettier"],
+    "extends": ["react-app", "plugin:prettier/recommended", "prettier"],
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "useTabs": false,
+          "printWidth": 160, //預設值為80
+          "tabWidth": 2,
+          "endOfLine": "auto"
+        }
+      ],
+      "react/jsx-filename-extension": [
+        "warn",
+        {
+          "extensions": [".js", ".jsx"]
+        }
+      ]
+    }
+  }
