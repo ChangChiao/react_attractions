@@ -1,16 +1,7 @@
-import axios from "axios";
-import qs from "qs";
-import * as numeral from "numeral";
 import store from "../store";
 import { addTodo } from "../store/slice/todo";
 import { toast } from "react-toastify";
 import { createBrowserHistory } from "history";
-const config = require(`../configs/basic/${process.env.REACT_APP_BASIC_TYPE}.js`).defaultConfig;
-const api = axios.create({
-  headers: {
-    "Content-Type": "application/x-www-form-urlencoded",
-  },
-});
 
 const history = createBrowserHistory({ forceRefresh: true });
 
@@ -20,7 +11,6 @@ export const test = () => {
   store.dispatch(addTodo({ id: new Date().getTime(), name: "123456" }));
   history.push("/wan");
 };
-
 
 export function showToast(msg, type = "success") {
   if (msg) {
