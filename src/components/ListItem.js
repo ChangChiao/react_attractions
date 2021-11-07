@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt, faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { transDate } from "../utils/common";
+import { useHistory } from "react-router-dom";
 const ListComp = styled.div`
   width: 49%;
   cursor: pointer;
@@ -30,19 +32,35 @@ const ListComp = styled.div`
   }
 `;
 
-function ListItem(props) {
+function ListItem({ data }) {
+  const history = useHistory();
+  const setImage = (Picture = {}) => {
+    const { PictureUrl1 } = Picture;
+    return PictureUrl1 ? PictureUrl1 : process.env.PUBLIC_URL + `/image/default/act.jpg`;
+  };
+  const handleClick = () => {
+    history.push({
+      pathname: "/intro",
+      state: data,
+    });
+  };
   return (
-    <ListComp>
-      <img src={process.env.PUBLIC_URL + `/image/banner/0.jpg`} />
+    <ListComp
+      onClick={() => {
+        handleClick();
+      }}
+    >
+      <img src={setImage(data.Picture)} />
       <div className="text">
-        <p className="date">2021/10/20-2021/11/09</p>
-        <p className="item-title">新北市花果節嘉年華</p>
+        <p className="date">{`${transDate(data.StartTime)}-${transDate(data.EndTime)}`}</p>
+        <p className="item-title">{data.Name}</p>
         <p className="bottom-info">
           <span className="location">
             <FontAwesomeIcon className="mark" icon={faMapMarkerAlt} />
-            南投縣 {props.locaiton}
+            南投縣 {data.Address}
           </span>
           <span className="intro">
+            {data.type}
             詳細介紹
             <FontAwesomeIcon className="mark" icon={faChevronRight} />
           </span>

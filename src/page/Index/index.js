@@ -1,26 +1,58 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "./components/Slider";
 import Search from "./components/Search";
 import Activity from "./components/Activity";
 import Recommend from "../../components/Recommend";
-function index() {
-  const hot = {
+import { getSpot, getRestaurant } from "../../utils/api";
+
+function Index() {
+  const [spotList, setSpotList] = useState({
     title: "熱門打卡景點",
-    list: [1, 3, 4, 5],
-  };
-  const food = {
+    type: "spot",
+    list: [],
+  });
+  const [restList, setRestList] = useState({
     title: "一再回訪美食",
-    list: [1, 3, 4, 5],
+    type: "restaurant",
+    list: [],
+  });
+  const getSpotApi = async () => {
+    const sendData = {
+      $top: 4,
+      // $orderBy: "EndTime",
+    };
+    let result = await getSpot(sendData);
+    setSpotList((prevState) => ({
+      ...prevState,
+      list: result,
+    }));
   };
+
+  const getRestaurantApi = async () => {
+    const sendData = {
+      $top: 4,
+      // $orderBy: "EndTime",
+    };
+    let result = await getRestaurant(sendData);
+    setRestList((prevState) => ({
+      ...prevState,
+      list: result,
+    }));
+  };
+
+  useEffect(() => {
+    getSpotApi();
+    getRestaurantApi();
+  }, []);
   return (
     <div>
       <Search />
       <Slider />
       <Activity />
-      <Recommend data={hot} />
-      <Recommend data={food} />
+      <Recommend data={spotList} />
+      <Recommend data={restList} />
     </div>
   );
 }
 
-export default index;
+export default Index;

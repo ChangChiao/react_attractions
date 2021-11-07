@@ -22,20 +22,20 @@ const RecommendComp = styled.div`
   }
 `;
 
-function Recommend(props) {
+function Recommend({ data }) {
   return (
     <RecommendComp>
       <div className="title-bar">
-        <h3 class="title">{props.data.title}</h3>
-        <span class="more">
+        <h3 className="title">{data.title}</h3>
+        <span className="more">
           查看更多活動
           <FontAwesomeIcon className="mark" icon={faChevronRight} />
         </span>
       </div>
       <div className="list">
-        {props.data.list &&
-          props.data.list.map((vo) => {
-            return <ListCard data={vo} />;
+        {data.list &&
+          data.list.map((vo) => {
+            return <ListCard data={{ ...vo, type: data.type }} key={vo.ID} />;
           })}
       </div>
     </RecommendComp>

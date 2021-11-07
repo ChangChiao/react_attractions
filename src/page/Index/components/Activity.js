@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import ListItem from "../../../components/ListItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-
+import { getActivity } from "../../../utils/api";
 const ActComp = styled.div`
   margin-top: 30px;
   .title-bar {
@@ -22,8 +22,19 @@ const ActComp = styled.div`
   }
 `;
 
-const list = [1, 3, 4, 5];
 function Activity() {
+  const [list, setList] = useState([]);
+  const getAct = async () => {
+    const sendData = {
+      $top: 4,
+      $orderBy: "EndTime",
+    };
+    const result = await getActivity(sendData);
+    setList(result);
+  };
+  useEffect(() => {
+    getAct();
+  }, []);
   return (
     <ActComp>
       <div className="title-bar">
@@ -35,7 +46,7 @@ function Activity() {
       </div>
       <div className="list">
         {list.map((vo) => {
-          return <ListItem data={vo} />;
+          return <ListItem key={vo.ID} data={{ ...vo, type: "activity" }} />;
         })}
       </div>
     </ActComp>

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-
+import { useHistory } from "react-router-dom";
 const HeaderComp = styled.header`
   height: 80px;
   display: flex;
@@ -12,6 +12,7 @@ const HeaderComp = styled.header`
     color: var(--green);
     letter-spacing: 5px;
     font-size: 20px;
+    cursor: pointer;
   }
 `;
 
@@ -21,6 +22,7 @@ const MenuComp = styled.ul`
   align-items: center;
   li {
     margin: 0 10px;
+    cursor: pointer;
   }
 `;
 
@@ -31,13 +33,32 @@ const menu = [
 ];
 
 function Header() {
+  const history = useHistory();
+  const handleClick = (path) => {
+    history.push(path);
+  };
   return (
     <HeaderComp>
       {/* <img src="" alt=""/> */}
-      <h1>台灣走走 • Taiwan</h1>
+      <h1
+        onClick={() => {
+          handleClick("/");
+        }}
+      >
+        台灣走走 • Taiwan
+      </h1>
       <MenuComp>
         {menu.map((vo) => {
-          return <li key="vo.name">{vo.name}</li>;
+          return (
+            <li
+              key={vo.name}
+              onClick={() => {
+                handleClick(vo.path);
+              }}
+            >
+              {vo.name}
+            </li>
+          );
         })}
       </MenuComp>
     </HeaderComp>

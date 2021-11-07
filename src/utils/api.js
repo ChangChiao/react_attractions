@@ -1,14 +1,14 @@
 import api from "../utils/http";
-import { API_URL } from "../global/constant";
+import { API_SPOT, API_RESTAURANT, API_ACTIVITY } from "../global/constant";
 
-export const getAddress = (data) => {
-  return api.get(API_URL, { params: { ...data } });
+export const getRestaurant = (data) => {
+  return api.get(API_RESTAURANT, { params: { ...data } });
 };
 
-export const getAddress2 = () => {
-  return api.get(API_URL);
+export const getSpot = (data) => {
+  return api.get(API_SPOT, { params: { ...data } });
 };
 
-export const getAddress3 = () => {
-  return api.post(API_URL);
+export const getActivity = (data) => {
+  return api.get(API_ACTIVITY, { params: { ...data } });
 };
