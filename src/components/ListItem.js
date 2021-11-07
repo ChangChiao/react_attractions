@@ -33,7 +33,7 @@ const ListComp = styled.div`
 function ListItem(props) {
   return (
     <ListComp>
-      <img src={process.env.PUBLIC_URL + `image/banner/0.jpg`} />
+      <img src={process.env.PUBLIC_URL + `/image/banner/0.jpg`} />
       <div className="text">
         <p className="date">2021/10/20-2021/11/09</p>
         <p className="item-title">新北市花果節嘉年華</p>
