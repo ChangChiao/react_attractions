@@ -3,7 +3,7 @@ import Select from "react-select";
 import styled from "styled-components";
 
 const SelectComponent = styled.div`
-  width: 160px;
+  width: 300px;
   margin-right: 5px;
 `;
 
@@ -25,8 +25,7 @@ export const customStyles = {
   control: (provided) => ({
     ...provided,
     // none of react-select's styles are passed to <Control />
-    border: "0px",
-    boxShadow: "0px 6px 6px rgba(0, 0, 0, 0.1)",
+    border: "1px solid #ddd",
     color: "#ccc",
   }),
   singleValue: (provided, state) => ({

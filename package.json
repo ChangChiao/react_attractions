@@ -43,7 +43,8 @@
   },
   "scripts": {
     "lint": "eslint 'src/**/*.js",
-    "fix": "eslint --fix src/**/*.js config-overrides.js",
+    "fix": "./node_modules/.bin/eslint src --fix",
+    "fix-normal": "eslint --fix src/**/*.js config-overrides.js",
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "build-dev": "env-cmd -f .env.dev react-app-rewired build",
