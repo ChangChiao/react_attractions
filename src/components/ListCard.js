@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useHistory, useLocation, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 const Card = styled.div`
@@ -21,23 +21,30 @@ const Card = styled.div`
   }
 `;
 
-function ListCard(props) {
+function ListCard({ data }) {
   const history = useHistory();
-  const handleClick = ({ id, link, subList }) => {
+  const setImage = (Picture = {}) => {
+    const { PictureUrl1 } = Picture;
+    return PictureUrl1 ? PictureUrl1 : process.env.PUBLIC_URL + `/image/default/act.jpg`;
+  };
+  const handleClick = () => {
     // history.push(link);
-    history.push("/intro");
+    history.push({
+      pathname: "/intro",
+      state: data,
+    });
   };
   return (
     <Card
       onClick={() => {
-        handleClick(props.data);
+        handleClick();
       }}
     >
-      <img className="cover" src={process.env.PUBLIC_URL + `/image/banner/0.jpg`} />
-      <p className="item-title">金都餐廳</p>
+      <img className="cover" src={setImage(data.Picture)} />
+      <p className="item-title">{data.Name}</p>
       <p className="location">
         <FontAwesomeIcon className="mark" icon={faMapMarkerAlt} />
-        南投縣 {props.locaiton}
+        {data.Address && data.Address.substring(0, 3)}
       </p>
     </Card>
   );

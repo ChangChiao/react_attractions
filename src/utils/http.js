@@ -2,8 +2,8 @@ import jsSHA from "jssha";
 import axios from "axios";
 
 const getAuthorizationHeader = () => {
-  let AppID = import.meta.env.VITE_APP_ID;
-  let AppKey = import.meta.env.VITE_APP_KEY;
+  let AppID = process.env.REACT_APP_ID;
+  let AppKey = process.env.REACT_APP_KEY;
 
   const GMTString = new Date().toGMTString();
   const ShaObj = new jsSHA("SHA-1", "TEXT");

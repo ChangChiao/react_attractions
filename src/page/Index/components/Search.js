@@ -38,6 +38,7 @@ const TitleComp = styled.div`
     margin-top: 10px;
     letter-spacing: 5px;
     display: block;
+    cursor: pointer;
     svg {
       margin-right: 5px;
       cursor: pointer;
