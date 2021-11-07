@@ -9,6 +9,7 @@ import Index from "./page/Index/index";
 import Attraction from "./page/Attraction";
 import Festival from "./page/Festival";
 import Food from "./page/Food";
+import Intro from "./page/Intro";
 import { ToastContainer } from "react-toastify";
 let persistor = persistStore(store);
 
@@ -22,6 +23,7 @@ function App() {
             <Route path="/attraction" component={Attraction} />
             <Route path="/festival" component={Festival} />
             <Route path="/food" component={Food} />
+            <Route path="/intro" component={Intro} />
           </DefaultTemp>
           <ToastContainer />
         </div>
