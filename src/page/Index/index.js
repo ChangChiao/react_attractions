@@ -1,13 +1,19 @@
-import {API_GET_DATA} from "../../global/constants";
-
-const fetchData = async () => {
-    const res = await fetch(API_GET_DATA);
-    const data = await res.json();
-
+import React from "react";
+import Slider from "./components/Slider";
+import Search from "./components/Search";
+import Activity from "./components/Activity";
+import Hot from "./components/Hot";
+import FoodRecommend from "./components/FoodRecommend";
+function index() {
+  return (
+    <div>
+      <Search />
+      <Slider />
+      <Activity />
+      <Hot />
+      <FoodRecommend />
+    </div>
+  );
 }
 
-const Home = () =>{
-    return <div>uuid</div>
-}
-
-export default Home;
+export default index;
