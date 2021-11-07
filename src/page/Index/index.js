@@ -8,10 +8,12 @@ import { getSpot, getRestaurant } from "../../utils/api";
 function Index() {
   const [spotList, setSpotList] = useState({
     title: "熱門打卡景點",
+    type: "spot",
     list: [],
   });
   const [restList, setRestList] = useState({
     title: "一再回訪美食",
+    type: "restaurant",
     list: [],
   });
   const getSpotApi = async () => {

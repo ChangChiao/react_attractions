@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { transDate } from "../utils/common";
+import { useHistory } from "react-router-dom";
 const ListComp = styled.div`
   width: 49%;
   cursor: pointer;
@@ -32,12 +33,23 @@ const ListComp = styled.div`
 `;
 
 function ListItem({ data }) {
+  const history = useHistory();
   const setImage = (Picture = {}) => {
     const { PictureUrl1 } = Picture;
     return PictureUrl1 ? PictureUrl1 : process.env.PUBLIC_URL + `/image/default/act.jpg`;
   };
+  const handleClick = () => {
+    history.push({
+      pathname: "/intro",
+      state: data,
+    });
+  };
   return (
-    <ListComp>
+    <ListComp
+      onClick={() => {
+        handleClick();
+      }}
+    >
       <img src={setImage(data.Picture)} />
       <div className="text">
         <p className="date">{`${transDate(data.StartTime)}-${transDate(data.EndTime)}`}</p>
@@ -48,6 +60,7 @@ function ListItem({ data }) {
             南投縣 {data.Address}
           </span>
           <span className="intro">
+            {data.type}
             詳細介紹
             <FontAwesomeIcon className="mark" icon={faChevronRight} />
           </span>

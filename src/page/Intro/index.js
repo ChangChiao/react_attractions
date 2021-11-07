@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import Recommend from "../../components/Recommend";
 import { useLocation } from "react-router";
+import Map from "./components/Map";
+import { getActivity, getSpot, getRestaurant } from "../../utils/api";
 const IntroComp = styled.div`
   margin-top: 30px;
   .main-cover {
@@ -48,6 +50,7 @@ const IntroComp = styled.div`
     p {
       padding: 8px 0;
       display: flex;
+      line-height: 20px;
       .focus {
         margin-right: 5px;
         word-break: keep-all;
@@ -57,39 +60,88 @@ const IntroComp = styled.div`
 `;
 function Index() {
   const { state } = useLocation();
+  const saveState = () => {
+    if (!state) {
+      const data = localStorage.getItem("intro");
+      setData(JSON.parse(data));
+      return;
+    }
+    localStorage.setItem("intro", JSON.stringify(state));
+    setData(state);
+  };
+  const [data, setData] = useState({});
+  const [recommend, setRecommend] = useState({});
   const setImage = (Picture = {}) => {
     const { PictureUrl1 } = Picture;
     return PictureUrl1 ? PictureUrl1 : process.env.PUBLIC_URL + `/image/default/act.jpg`;
   };
-  const recommend = {
-    title: "還有這些不能錯過的景點",
-    list: [1, 3, 4, 5],
+
+  const getRecommend = async () => {
+    const sendData = {
+      $top: 4,
+    };
+    let result = [];
+    let title = "";
+    console.log("data.type", data.type);
+    console.log("state111", state);
+    console.log("data111", data);
+    setTimeout(() => {
+      console.log("data.type", data.type);
+      console.log("state", state);
+    }, 3000);
+    switch (data.type) {
+      case "activity":
+        title = "活動";
+        result = await getActivity(sendData);
+        break;
+      case "spot":
+        title = "景點";
+        result = await getSpot(sendData);
+        break;
+      default:
+        title = "餐廳";
+        result = await getRestaurant(sendData);
+        break;
+    }
+    setRecommend({
+      title: "還有這些不能錯過的" + title,
+      list: result,
+    });
   };
+
+  useEffect(() => {
+    saveState();
+  }, []);
+
+  useEffect(() => {
+    getRecommend();
+  }, [data]);
+
   return (
     <IntroComp>
-      <img className="main-cover" src={setImage(state.Picture)} />
-      <h2 className="intro-title">{state.Name}</h2>
+      <img className="main-cover" src={setImage(data.Picture)} />
+      <h2 className="intro-title">{data.Name}</h2>
       <div className="tag-group">
         <span className="tag">#自然風景類</span>
-        <span className="tag">#林場類</span>
+        <span className="tag">#熱門景點</span>
       </div>
       <div className="content">
         <h3 className="focus">景點介紹:</h3>
-        <p>{state.DescriptionDetail}</p>
+        <p>{data.DescriptionDetail}</p>
       </div>
-      <div className="info">
+      <div className="intro">
         <div className="detail">
           <p>
             <h3 className="focus">開放時間:</h3>
-            {state.OpenTime}
+            {data.OpenTime}
           </p>
           <p>
             <h3 className="focus">服務電話:</h3>
-            {state.Phone}
+            {data.Phone}
           </p>
           <p>
             <h3 className="focus">景點地址:</h3>
-            {state.Address}
+            {data.Address}
           </p>
           {/* <p>
             <h3 className="focus">官方網站:</h3>
@@ -97,14 +149,16 @@ function Index() {
           </p> */}
           <p>
             <h3 className="focus">票價資訊:</h3>
-            {state.TicketInfo}
+            {data.TicketInfo}
           </p>
           <p>
             <h3 className="focus">注意事項:</h3>
-            {state.Remarks}
+            {data.Remarks}
           </p>
         </div>
-        <div className="map"></div>
+        <div className="map">
+          <Map Position={data.Position} />
+        </div>
       </div>
       <Recommend data={recommend} />
     </IntroComp>

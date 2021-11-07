@@ -12,6 +12,7 @@ const HeaderComp = styled.header`
     color: var(--green);
     letter-spacing: 5px;
     font-size: 20px;
+    cursor: pointer;
   }
 `;
 
@@ -39,7 +40,13 @@ function Header() {
   return (
     <HeaderComp>
       {/* <img src="" alt=""/> */}
-      <h1>台灣走走 • Taiwan</h1>
+      <h1
+        onClick={() => {
+          handleClick("/");
+        }}
+      >
+        台灣走走 • Taiwan
+      </h1>
       <MenuComp>
         {menu.map((vo) => {
           return (

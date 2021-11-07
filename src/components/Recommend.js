@@ -35,7 +35,7 @@ function Recommend({ data }) {
       <div className="list">
         {data.list &&
           data.list.map((vo) => {
-            return <ListCard data={vo} key={vo.ID} />;
+            return <ListCard data={{ ...vo, type: data.type }} key={vo.ID} />;
           })}
       </div>
     </RecommendComp>
