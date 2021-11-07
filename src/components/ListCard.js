@@ -33,7 +33,7 @@ function ListCard(props) {
         handleClick(props.data);
       }}
     >
-      <img className="cover" src={process.env.PUBLIC_URL + `image/banner/0.jpg`} />
+      <img className="cover" src={process.env.PUBLIC_URL + `/image/banner/0.jpg`} />
       <p className="item-title">金都餐廳</p>
       <p className="location">
         <FontAwesomeIcon className="mark" icon={faMapMarkerAlt} />
