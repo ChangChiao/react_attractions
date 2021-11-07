@@ -9,7 +9,7 @@ const TitleComp = styled.div`
   display: flex;
   justify-content: center;
   .area {
-    width: 50%;
+    width: 35%;
   }
   .main-title {
     font-size: 36px;
@@ -37,6 +37,7 @@ const TitleComp = styled.div`
     height: 40px;
     margin-top: 10px;
     letter-spacing: 5px;
+    display: block;
     svg {
       margin-right: 5px;
       cursor: pointer;
