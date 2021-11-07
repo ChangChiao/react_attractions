@@ -9,7 +9,7 @@ const TitleComp = styled.div`
   display: flex;
   justify-content: center;
   .area {
-    width: 35%;
+    width: 40%;
   }
   .main-title {
     font-size: 36px;

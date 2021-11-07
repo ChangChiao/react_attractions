@@ -3,14 +3,14 @@ import styled from "styled-components";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 const DefaultComponent = styled.div`
-  /* display: flex; */
+  /* overflow-y: scroll; */
 `;
 
 function DefaultTemp(props) {
   return (
     <DefaultComponent>
       <Header />
-      {props.children}
+      <div className="wrapper">{props.children}</div>
       <Footer />
     </DefaultComponent>
   );
