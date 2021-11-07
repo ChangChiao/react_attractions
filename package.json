@@ -2,7 +2,6 @@
   "name": "react-attractions",
   "version": "0.1.0",
   "private": true,
-  "homepage": "./",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
@@ -50,6 +49,8 @@
     "build": "react-app-rewired build",
     "build-dev": "env-cmd -f .env.dev react-app-rewired build",
     "build-prd": "env-cmd -f .env.local react-app-rewired build",
+    "predeploy": "yarn env-cmd -f .env.local react-app-rewired build",
+    "deploy": "gh-pages -d docs",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },
@@ -66,6 +67,7 @@
     ]
   },
   "devDependencies": {
+    "gh-pages": "^3.2.3",
     "react-app-rewire-scss-loaders": "^0.1.3"
   }
 }
