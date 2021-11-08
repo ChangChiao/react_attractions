@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMapMarkerAlt, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import Recommend from "../../components/Recommend";
 import { useLocation } from "react-router";
 import Map from "./components/Map";
 import { getActivity, getSpot, getRestaurant } from "../../utils/api";
+import InfoCardAct from "../../components/InfoCardAct";
+import InfoCardRest from "../../components/InfoCardRest";
+import InfoCardSpot from "../../components/InfoCardSpot";
+import Crumb from "../../components/Crumb";
 const IntroComp = styled.div`
   margin-top: 30px;
   .main-cover {
@@ -60,6 +62,9 @@ const IntroComp = styled.div`
 `;
 function Index() {
   const { state } = useLocation();
+  const [data, setData] = useState({});
+  const [recommend, setRecommend] = useState({});
+  const [tag, setTag] = useState([]);
   const saveState = () => {
     if (!state) {
       const data = localStorage.getItem("intro");
@@ -69,22 +74,16 @@ function Index() {
     localStorage.setItem("intro", JSON.stringify(state));
     setData(state);
   };
-  const [data, setData] = useState({});
-  const [recommend, setRecommend] = useState({});
   const setImage = (Picture = {}) => {
     const { PictureUrl1 } = Picture;
     return PictureUrl1 ? PictureUrl1 : process.env.PUBLIC_URL + `/image/default/act.jpg`;
   };
-
+  let title = "";
   const getRecommend = async () => {
     const sendData = {
       $top: 4,
     };
     let result = [];
-    let title = "";
-    console.log("data.type", data.type);
-    console.log("state111", state);
-    console.log("data111", data);
     setTimeout(() => {
       console.log("data.type", data.type);
       console.log("state", state);
@@ -109,28 +108,58 @@ function Index() {
     });
   };
 
+  const InfoCard = () => {
+    switch (data.type) {
+      case "activity":
+        return <InfoCardAct data={data} />;
+      case "spot":
+        return <InfoCardSpot data={data} />;
+      default:
+        return <InfoCardRest data={data} />;
+    }
+  };
+
+  const getTag = () => {
+    let arr = [];
+    for (const [key, value] of Object.entries(data)) {
+      if (key.includes("Class")) arr.push(`#${value}`);
+    }
+    if (arr.length === 0) arr.push("#熱門打卡");
+    setTag(arr);
+  };
+
   useEffect(() => {
     saveState();
   }, []);
 
   useEffect(() => {
     getRecommend();
+    getTag();
   }, [data]);
 
   return (
     <IntroComp>
+      <Crumb type={data.type} title={data.Name} />
       <img className="main-cover" src={setImage(data.Picture)} />
       <h2 className="intro-title">{data.Name}</h2>
       <div className="tag-group">
-        <span className="tag">#自然風景類</span>
-        <span className="tag">#熱門景點</span>
+        {/* <span className="tag">#自然風景類</span>
+        <span className="tag">#熱門景點</span> */}
+        {tag.map((vo) => {
+          return (
+            <span className="tag" key={vo}>
+              {vo}
+            </span>
+          );
+        })}
       </div>
       <div className="content">
-        <h3 className="focus">景點介紹:</h3>
+        <h3 className="focus">{title}介紹:</h3>
         <p>{data.DescriptionDetail}</p>
       </div>
       <div className="intro">
-        <div className="detail">
+        <InfoCard />
+        {/* <div className="detail">
           <p>
             <h3 className="focus">開放時間:</h3>
             {data.OpenTime}
@@ -143,10 +172,6 @@ function Index() {
             <h3 className="focus">景點地址:</h3>
             {data.Address}
           </p>
-          {/* <p>
-            <h3 className="focus">官方網站:</h3>
-           
-          </p> */}
           <p>
             <h3 className="focus">票價資訊:</h3>
             {data.TicketInfo}
@@ -155,7 +180,7 @@ function Index() {
             <h3 className="focus">注意事項:</h3>
             {data.Remarks}
           </p>
-        </div>
+        </div> */}
         <div className="map">
           <Map Position={data.Position} />
         </div>
