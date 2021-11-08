@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt, faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -47,13 +48,14 @@ const TitleComp = styled.div`
 `;
 
 function Search() {
-  const options = [
-    { value: "chocolate", label: "Chocolate" },
-    { value: "strawberry", label: "Strawberry" },
-    { value: "vanilla", label: "Vanilla" },
-  ];
+  //   const options = [
+  //     { value: "chocolate", label: "Chocolate" },
+  //     { value: "strawberry", label: "Strawberry" },
+  //     { value: "vanilla", label: "Vanilla" },
+  //   ];
   const [keyword, setKeyword] = useState("");
   const [selectedOption, setSelectedOption] = useState(null);
+  const cityList = useSelector((state) => state.city.cityList);
   return (
     <TitleComp>
       <div className="area">
@@ -65,7 +67,7 @@ function Search() {
         </p>
       </div>
       <div className="area">
-        <DropDown defaultValue={selectedOption} onChange={setSelectedOption} options={options} />
+        <DropDown defaultValue={selectedOption} onChange={setSelectedOption} options={cityList} />
         <input
           className="search-input"
           placeholder="你想去哪裡？請輸入關鍵字"

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import ListCard from "./ListCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMapMarkerAlt, faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 const RecommendComp = styled.div`
   margin-top: 50px;

@@ -7,7 +7,7 @@ const HeaderComp = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 0 50px;
-  border: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
   h1 {
     color: var(--green);
     letter-spacing: 5px;

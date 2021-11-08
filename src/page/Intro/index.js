@@ -58,6 +58,10 @@ const IntroComp = styled.div`
         word-break: keep-all;
       }
     }
+    a {
+      word-break: break-all;
+      color: var(--green);
+    }
   }
 `;
 function Index() {
@@ -65,6 +69,7 @@ function Index() {
   const [data, setData] = useState({});
   const [recommend, setRecommend] = useState({});
   const [tag, setTag] = useState([]);
+  const [title, setTitle] = useState("");
   const saveState = () => {
     if (!state) {
       const data = localStorage.getItem("intro");
@@ -78,11 +83,11 @@ function Index() {
     const { PictureUrl1 } = Picture;
     return PictureUrl1 ? PictureUrl1 : process.env.PUBLIC_URL + `/image/default/act.jpg`;
   };
-  let title = "";
   const getRecommend = async () => {
     const sendData = {
       $top: 4,
     };
+    let title = "";
     let result = [];
     setTimeout(() => {
       console.log("data.type", data.type);
@@ -102,6 +107,8 @@ function Index() {
         result = await getRestaurant(sendData);
         break;
     }
+
+    setTitle(title);
     setRecommend({
       title: "還有這些不能錯過的" + title,
       list: result,
@@ -155,32 +162,10 @@ function Index() {
       </div>
       <div className="content">
         <h3 className="focus">{title}介紹:</h3>
-        <p>{data.DescriptionDetail}</p>
+        <p>{data.type === "spot" ? data.DescriptionDetail : data.Description}</p>
       </div>
       <div className="intro">
         <InfoCard />
-        {/* <div className="detail">
-          <p>
-            <h3 className="focus">開放時間:</h3>
-            {data.OpenTime}
-          </p>
-          <p>
-            <h3 className="focus">服務電話:</h3>
-            {data.Phone}
-          </p>
-          <p>
-            <h3 className="focus">景點地址:</h3>
-            {data.Address}
-          </p>
-          <p>
-            <h3 className="focus">票價資訊:</h3>
-            {data.TicketInfo}
-          </p>
-          <p>
-            <h3 className="focus">注意事項:</h3>
-            {data.Remarks}
-          </p>
-        </div> */}
         <div className="map">
           <Map Position={data.Position} />
         </div>

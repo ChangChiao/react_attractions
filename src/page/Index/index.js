@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import Slider from "./components/Slider";
 import Search from "./components/Search";
 import Activity from "./components/Activity";
@@ -6,6 +7,7 @@ import Recommend from "../../components/Recommend";
 import { getSpot, getRestaurant } from "../../utils/api";
 
 function Index() {
+  const dispatch = useDispatch();
   const [spotList, setSpotList] = useState({
     title: "熱門打卡景點",
     type: "spot",

@@ -16,7 +16,7 @@ export default function Crumb({ type, title }) {
   const typeList = {
     activity: "節慶活動",
     spot: "探索景點",
-    restauran: "品嚐美食",
+    restaurant: "品嚐美食",
   };
   return (
     <CrumbComp>
