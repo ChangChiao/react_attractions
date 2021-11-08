@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { TYPE_LIST } from "../global/constant";
 const CrumbComp = styled.div`
   padding-bottom: 20px;
   font-size: 14px;
@@ -13,14 +14,9 @@ const CrumbComp = styled.div`
 `;
 
 export default function Crumb({ type, title }) {
-  const typeList = {
-    activity: "節慶活動",
-    spot: "探索景點",
-    restaurant: "品嚐美食",
-  };
   return (
     <CrumbComp>
-      <span className="crumb-text">{typeList[type]}</span>
+      <span className="crumb-text">{TYPE_LIST[type]}</span>
       <strong>/</strong>
       <span className="crumb-text">{title}</span>
     </CrumbComp>

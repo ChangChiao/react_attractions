@@ -150,8 +150,6 @@ function Index() {
       <img className="main-cover" src={setImage(data.Picture)} />
       <h2 className="intro-title">{data.Name}</h2>
       <div className="tag-group">
-        {/* <span className="tag">#自然風景類</span>
-        <span className="tag">#熱門景點</span> */}
         {tag.map((vo) => {
           return (
             <span className="tag" key={vo}>

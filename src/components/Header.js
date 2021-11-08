@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
+import { MENU_LIST } from "../global/constant";
+
 const HeaderComp = styled.header`
   height: 80px;
   display: flex;
@@ -26,12 +28,6 @@ const MenuComp = styled.ul`
   }
 `;
 
-const menu = [
-  { name: "探索景點", path: "/attraction" },
-  { name: "節慶活動", path: "/festival" },
-  { name: "品嚐美食", path: "/food" },
-];
-
 function Header() {
   const history = useHistory();
   const handleClick = (path) => {
@@ -48,7 +44,7 @@ function Header() {
         台灣走走 • Taiwan
       </h1>
       <MenuComp>
-        {menu.map((vo) => {
+        {MENU_LIST.map((vo) => {
           return (
             <li
               key={vo.name}
