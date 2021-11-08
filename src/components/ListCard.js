@@ -6,9 +6,9 @@ import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 const Card = styled.div`
   width: 24%;
   cursor: pointer;
-  transition-duration: 0.5s;
+  transition-duration: 0.3s;
   &:hover {
-    transform: translate(5px 5px);
+    transform: translate(2px, 2px);
   }
   .cover {
     border-radius: 20px;

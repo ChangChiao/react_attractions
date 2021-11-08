@@ -1,22 +1,8 @@
-import React, { useEffect, useState } from "react";
-import cityData from "../assets/City.json";
-import DropDown from "../../../components/DropDown";
-function CitySelect() {
-  const [list, setList] = useState([]);
-  const [selectedOption, setSelectedOption] = useState(null);
-  const getCityData = () => {
-    const list = cityData.map((vo) => {
-      return {
-        value: vo.CityName,
-        label: vo.CityName,
-      };
-    });
-    setList(list);
-  };
-  useEffect(() => {
-    getCityData();
-  }, []);
-  return <DropDown defaultValue={selectedOption} onChange={setSelectedOption} options={list} />;
+import React from "react";
+import DropDown from "./DropDown";
+import { CITY_LIST } from "../global/constant";
+function CitySelect({ setCity, city }) {
+  return <DropDown defaultValue={city} onChange={setCity} options={CITY_LIST} />;
 }
 
 export default CitySelect;

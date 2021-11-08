@@ -16,7 +16,7 @@ const CrumbComp = styled.div`
 export default function Crumb({ type, title }) {
   return (
     <CrumbComp>
-      <span className="crumb-text">{TYPE_LIST[type]}</span>
+      <span className="crumb-text">{type}</span>
       <strong>/</strong>
       <span className="crumb-text">{title}</span>
     </CrumbComp>

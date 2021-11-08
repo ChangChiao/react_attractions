@@ -5,4 +5,9 @@
 .more{
     font-size: 14px;
     color: var(--red);
+    cursor: pointer;
+    transition-duration: 0.3s;
+    &:hover {
+        transform: translate(5px, 0);
+    }
 }

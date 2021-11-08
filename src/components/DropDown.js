@@ -19,7 +19,7 @@ export const customStyles = {
   option: (provided, state) => ({
     ...provided,
     borderBottom: "1px dotted #ccc",
-    color: state.isSelected ? "#333" : "#999",
+    color: state.isSelected ? "#333" : "#666",
     padding: 10,
   }),
   control: (provided) => ({
@@ -31,7 +31,7 @@ export const customStyles = {
   singleValue: (provided, state) => ({
     ...provided,
     borderRadius: "4px",
-    // backgroundColor: "blue",
+    // backgroundColor: "green",
     opacity: state.isDisabled ? 0.5 : 1,
   }),
 };

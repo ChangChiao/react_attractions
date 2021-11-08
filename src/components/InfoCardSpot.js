@@ -25,7 +25,7 @@ function InfoCardSpot({ data }) {
       </p>
       <p>
         <h3 className="focus">注意事項:</h3>
-        {data.Remarks}
+        {data.Remarks || "無"}
       </p>
     </div>
   );

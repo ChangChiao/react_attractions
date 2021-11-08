@@ -54,7 +54,7 @@ function Search() {
   const dispatch = useDispatch();
   const history = useHistory();
   const [keyword, setKeyword] = useState("");
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption, setSelectedOption] = useState(TYPE_LIST[1]);
 
   const saveSearchData = () => {
     const dataObj = {

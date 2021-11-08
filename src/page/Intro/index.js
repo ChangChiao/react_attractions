@@ -8,6 +8,7 @@ import InfoCardAct from "../../components/InfoCardAct";
 import InfoCardRest from "../../components/InfoCardRest";
 import InfoCardSpot from "../../components/InfoCardSpot";
 import Crumb from "../../components/Crumb";
+import { TYPE_LIST } from "../../global/constant";
 const IntroComp = styled.div`
   margin-top: 30px;
   .main-cover {
@@ -134,6 +135,11 @@ function Index() {
     if (arr.length === 0) arr.push("#熱門打卡");
     setTag(arr);
   };
+  const getCrumb = () => {
+    if (!data.type) return "";
+    const { label } = TYPE_LIST.find((vo) => vo.value === data.type);
+    return label;
+  };
 
   useEffect(() => {
     saveState();
@@ -146,7 +152,7 @@ function Index() {
 
   return (
     <IntroComp>
-      <Crumb type={data.type} title={data.Name} />
+      <Crumb type={getCrumb()} title={data.Name} />
       <img className="main-cover" src={setImage(data.Picture)} />
       <h2 className="intro-title">{data.Name}</h2>
       <div className="tag-group">

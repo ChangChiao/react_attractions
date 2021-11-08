@@ -13,6 +13,11 @@ const ListComp = styled.div`
   border-radius: 12px;
   margin-top: 10px;
   background-color: var(--gray);
+  transition-duration: 0.3s;
+  &:hover {
+    transform: translate(2px, 2px);
+    background: #eee;
+  }
   img {
     width: 150px;
     object-fit: cover;
@@ -60,7 +65,6 @@ function ListItem({ data }) {
             南投縣 {data.Address}
           </span>
           <span className="intro">
-            {data.type}
             詳細介紹
             <FontAwesomeIcon className="mark" icon={faChevronRight} />
           </span>
