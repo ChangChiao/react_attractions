@@ -1,8 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt, faSearch } from "@fortawesome/free-solid-svg-icons";
 import DropDown from "../../../components/DropDown";
+import { setSearchData } from "../../../store/slice/searchDataSlice";
+import { TYPE_LIST } from "../../../global/constant";
+
 const TitleComp = styled.div`
   text-align: left;
   padding: 5% 10%;
@@ -13,7 +18,6 @@ const TitleComp = styled.div`
   }
   .main-title {
     font-size: 36px;
-    /* letter-spacing: 5px; */
     line-height: 50px;
   }
   .sub-title {
@@ -47,13 +51,20 @@ const TitleComp = styled.div`
 `;
 
 function Search() {
-  const options = [
-    { value: "chocolate", label: "Chocolate" },
-    { value: "strawberry", label: "Strawberry" },
-    { value: "vanilla", label: "Vanilla" },
-  ];
+  const dispatch = useDispatch();
+  const history = useHistory();
   const [keyword, setKeyword] = useState("");
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption, setSelectedOption] = useState(TYPE_LIST[1]);
+
+  const saveSearchData = () => {
+    const dataObj = {
+      keyword,
+      type: selectedOption?.value,
+    };
+    dispatch(setSearchData(dataObj));
+    history.push("/search");
+  };
+
   return (
     <TitleComp>
       <div className="area">
@@ -65,7 +76,7 @@ function Search() {
         </p>
       </div>
       <div className="area">
-        <DropDown defaultValue={selectedOption} onChange={setSelectedOption} options={options} />
+        <DropDown defaultValue={selectedOption} onChange={setSelectedOption} options={TYPE_LIST} />
         <input
           className="search-input"
           placeholder="你想去哪裡？請輸入關鍵字"
@@ -74,7 +85,7 @@ function Search() {
             setKeyword(e.target.value);
           }}
         />
-        <button className="search-btn">
+        <button className="search-btn" onClick={saveSearchData}>
           <FontAwesomeIcon className="mark" icon={faSearch} />
           搜尋
         </button>

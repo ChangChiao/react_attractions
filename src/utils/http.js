@@ -1,5 +1,6 @@
 import jsSHA from "jssha";
 import axios from "axios";
+import { showToast } from "../utils/common";
 
 const getAuthorizationHeader = () => {
   let AppID = process.env.REACT_APP_ID;
@@ -24,6 +25,10 @@ const service = axios.create({
 
 service.interceptors.request.use(
   (config) => {
+    let params = config.params;
+    Object.keys(params).map((vo) => {
+      if (!params[vo]) delete params[vo];
+    });
     return config;
   },
   (error) => {
@@ -37,9 +42,7 @@ service.interceptors.response.use(
   },
   (error) => {
     const { status } = error.response;
-    if (status === 401) {
-    }
-
+    showToast(`error--${status}`, "error");
     return Promise.reject(error);
   }
 );

@@ -1,6 +1,6 @@
 html, body{
     height:100%;
-    
+
 }
 
 * {
@@ -16,7 +16,7 @@ html {
     line-height: 16px;
     width: 100%;
     -webkit-font-smoothing: antialiased;
-  
+
 }
 
 body {
@@ -26,6 +26,7 @@ body {
 a{
     text-decoration: none;
     cursor: pointer;
+    color: var(--green);
     &:active{
         text-decoration: none;
         outline:none;
@@ -40,7 +41,7 @@ a{
 }
 
 html, body, div, span, iframe,
-h1, h2, h3, h4, h5, h6, p, a, em, 
+h1, h2, h3, h4, h5, h6, p, a, em,
 strong, sub, sup, b, u, dl, dt, dd, ol, ul, li,
 table, tbody, tfoot, thead, tr, th, td{
     color: var(--baseFont);
@@ -50,7 +51,7 @@ table, tbody, tfoot, thead, tr, th, td{
 button{
     margin: 0;
     padding: 0;
-    border: 1px solid transparent; 
+    border: 1px solid transparent;
     border-radius: 8px;
     overflow: hidden;
     outline: none;
