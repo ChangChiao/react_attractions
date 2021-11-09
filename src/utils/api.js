@@ -2,9 +2,9 @@ import api from "../utils/http";
 import { API_SPOT, API_RESTAURANT, API_ACTIVITY } from "../global/constant";
 
 const getCity = (data) => {
-  const { City } = data;
-  City && delete data.City;
-  return { cityPath: City, data };
+  const { city } = data;
+  delete data.city;
+  return { cityPath: city, data };
 };
 
 export const getRestaurant = (sendData) => {

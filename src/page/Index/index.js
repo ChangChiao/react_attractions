@@ -19,7 +19,6 @@ function Index() {
   const getSpotApi = async () => {
     const sendData = {
       $top: 4,
-      // $orderBy: "EndTime",
     };
     let result = await getSpot(sendData);
     setSpotList((prevState) => ({
@@ -31,7 +30,6 @@ function Index() {
   const getRestaurantApi = async () => {
     const sendData = {
       $top: 4,
-      // $orderBy: "EndTime",
     };
     let result = await getRestaurant(sendData);
     setRestList((prevState) => ({

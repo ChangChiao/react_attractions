@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { MENU_LIST } from "../global/constant";
+import { setSearchData } from "../store/slice/searchDataSlice";
 
 const HeaderComp = styled.header`
   height: 80px;
@@ -30,8 +32,13 @@ const MenuComp = styled.ul`
 
 function Header() {
   const history = useHistory();
+  const dispatch = useDispatch();
   const handleClick = (path) => {
-    history.push(path);
+    const dataObj = {
+      type: path,
+    };
+    dispatch(setSearchData(dataObj));
+    history.push("/search");
   };
   return (
     <HeaderComp>

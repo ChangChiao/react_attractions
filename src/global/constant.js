@@ -10,9 +10,9 @@ export const TYPE_LIST = [
 ];
 
 export const MENU_LIST = [
-  { name: "探索景點", path: "/attraction" },
-  { name: "節慶活動", path: "/festival" },
-  { name: "品嚐美食", path: "/food" },
+  { name: "探索景點", path: "spot" },
+  { name: "節慶活動", path: "activity" },
+  { name: "品嚐美食", path: "restaurant" },
 ];
 
 export const CITY_LIST = [

@@ -1,8 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import ListCard from "./ListCard";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { setSearchData } from "../store/slice/searchDataSlice";
 
 const RecommendComp = styled.div`
   margin-top: 50px;
@@ -23,11 +26,20 @@ const RecommendComp = styled.div`
 `;
 
 function Recommend({ data }) {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const handleClick = () => {
+    const dataObj = {
+      type: data?.type,
+    };
+    dispatch(setSearchData(dataObj));
+    history.push("/search");
+  };
   return (
     <RecommendComp>
       <div className="title-bar">
         <h3 className="title">{data.title}</h3>
-        <span className="more">
+        <span className="more" onClick={handleClick}>
           查看更多活動
           <FontAwesomeIcon className="mark" icon={faChevronRight} />
         </span>
