@@ -6,17 +6,27 @@ import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 const Card = styled.div`
   width: 24%;
   cursor: pointer;
-  transition-duration: 0.3s;
+  @media (max-width: 980px) {
+    width: 100%;
+  }
   &:hover {
-    transform: translate(2px, 2px);
+    .cover {
+      img {
+        transform: scale(1.1);
+      }
+    }
   }
   .cover {
     border-radius: 20px;
     height: 200px;
-    object-fit: cover;
     margin-bottom: 10px;
-    display: block;
-    width: 100%;
+    overflow: hidden;
+    img {
+      transition-duration: 0.3s;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
   .location {
     margin-bottom: 10px;
@@ -44,7 +54,9 @@ function ListCard({ data }) {
         handleClick();
       }}
     >
-      <img className="cover" src={setImage(data.Picture)} />
+      <div className="cover">
+        <img src={setImage(data.Picture)} />
+      </div>
       <p className="item-title">{data.Name}</p>
       <p className="location">
         <FontAwesomeIcon className="mark" icon={faMapMarkerAlt} />

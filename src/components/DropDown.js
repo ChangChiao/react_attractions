@@ -5,6 +5,9 @@ import styled from "styled-components";
 const SelectComponent = styled.div`
   width: 300px;
   margin-right: 5px;
+  @media (max-width: 980px) {
+    width: 100%;
+  }
 `;
 
 const theme = (theme) => ({
@@ -19,7 +22,8 @@ export const customStyles = {
   option: (provided, state) => ({
     ...provided,
     borderBottom: "1px dotted #ccc",
-    color: state.isSelected ? "#333" : "#666",
+    color: state.isSelected ? "#fff" : "#666",
+    backgroundColor: state.isSelected ? "#6E7D60" : "#fff",
     padding: 10,
   }),
   control: (provided) => ({

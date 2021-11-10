@@ -1,22 +1,30 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useState } from "react";
+import styled, { css } from "styled-components";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { MENU_LIST } from "../global/constant";
 import { setSearchData } from "../store/slice/searchDataSlice";
 
-const HeaderComp = styled.header`
+const titleStyle = css`
+  color: var(--green);
+  letter-spacing: 5px;
+  font-size: 20px;
+  cursor: pointer;
+`;
+
+const HeaderComp = styled.div`
+  width: 100%;
   height: 80px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 50px;
   border-bottom: 1px solid #ccc;
+  @media (max-width: 980px) {
+    display: none;
+  }
   h1 {
-    color: var(--green);
-    letter-spacing: 5px;
-    font-size: 20px;
-    cursor: pointer;
+    ${titleStyle}
   }
 `;
 
@@ -24,13 +32,89 @@ const MenuComp = styled.ul`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media (max-width: 980px) {
+    display: none;
+  }
   li {
     margin: 0 10px;
     cursor: pointer;
   }
 `;
 
+const MobileComp = styled.header`
+  width: 100%;
+  height: 50px;
+  text-align: center;
+  position: relative;
+  line-height: 50px;
+  display: none;
+  h1 {
+    ${titleStyle}
+  }
+  @media (max-width: 980px) {
+    display: block;
+  }
+`;
+
+const MobileMenu = styled.ul`
+  width: 100%;
+  height: calc(100vh - 50px);
+  position: fixed;
+  top: 50px;
+  z-index: 100;
+  background: var(--green);
+  li {
+    color: #fff;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-bottom: 1px solid var(--line);
+  }
+`;
+
+const HamburgerComp = styled.div`
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  background: var(--green);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  &:hover {
+    cursor: pointer;
+  }
+  ${(props) =>
+    props.active &&
+    css`
+      .line {
+        &:nth-child(1) {
+          transform: translateY(8px) rotate(45deg);
+        }
+        &:nth-child(2) {
+          opacity: 0;
+        }
+        &:nth-child(3) {
+          transform: translateY(-10px) rotate(-45deg);
+        }
+      }
+    `}
+
+  .line {
+    width: 30px;
+    height: 3px;
+    background-color: #ecf0f1;
+    display: block;
+    margin: 3px 0;
+    transition: all 0.3s ease-in-out;
+  }
+`;
 function Header() {
+  const [active, setActive] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
   const handleClick = (path) => {
@@ -38,33 +122,64 @@ function Header() {
       type: path,
     };
     dispatch(setSearchData(dataObj));
+    setActive(false);
     history.push("/search");
   };
+
+  const goHome = () => {
+    history.push("/");
+  };
+
+  const controlMenu = () => {
+    setActive((prevState) => {
+      return !prevState;
+    });
+  };
   return (
-    <HeaderComp>
-      {/* <img src="" alt=""/> */}
-      <h1
-        onClick={() => {
-          handleClick("/");
-        }}
-      >
-        台灣走走 • Taiwan
-      </h1>
-      <MenuComp>
-        {MENU_LIST.map((vo) => {
-          return (
-            <li
-              key={vo.name}
-              onClick={() => {
-                handleClick(vo.path);
-              }}
-            >
-              {vo.name}
-            </li>
-          );
-        })}
-      </MenuComp>
-    </HeaderComp>
+    <>
+      <HeaderComp>
+        {/* <img src="" alt=""/> */}
+        <h1 onClick={goHome}>台灣走走 • Tai Walk</h1>
+        <MenuComp>
+          {MENU_LIST.map((vo) => {
+            return (
+              <li
+                key={vo.name}
+                onClick={() => {
+                  handleClick(vo.path);
+                }}
+              >
+                {vo.name}
+              </li>
+            );
+          })}
+        </MenuComp>
+      </HeaderComp>
+      <MobileComp>
+        <h1 onClick={goHome}>台灣走走 • Tai Walk</h1>
+        <HamburgerComp active={active} onClick={controlMenu}>
+          <span class="line"></span>
+          <span class="line"></span>
+          <span class="line"></span>
+        </HamburgerComp>
+      </MobileComp>
+      {active && (
+        <MobileMenu>
+          {MENU_LIST.map((vo) => {
+            return (
+              <li
+                key={"m" + vo.name}
+                onClick={() => {
+                  handleClick(vo.path);
+                }}
+              >
+                {vo.name}
+              </li>
+            );
+          })}
+        </MobileMenu>
+      )}
+    </>
   );
 }
 

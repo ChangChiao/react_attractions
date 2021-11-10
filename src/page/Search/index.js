@@ -12,6 +12,7 @@ import { setSearchData } from "../../store/slice/searchDataSlice";
 import { getActivity, getSpot, getRestaurant } from "../../utils/api";
 import DatePicker from "react-datepicker";
 import Loading from "../../components/Loading";
+import "react-datepicker/dist/react-datepicker.css";
 
 function Index() {
   let endFlag = false;
@@ -34,10 +35,17 @@ function Index() {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      @media (max-width: 980px) {
+        display: block;
+      }
       .search-input {
         flex: 1;
         min-height: 42px;
         margin-right: 5px;
+        @media (max-width: 980px) {
+          width: 100%;
+          margin: 10px 0;
+        }
       }
       .search-btn {
         width: 160px;
@@ -45,6 +53,9 @@ function Index() {
         letter-spacing: 5px;
         display: block;
         cursor: pointer;
+        @media (max-width: 980px) {
+          width: 100%;
+        }
         svg {
           margin-right: 5px;
           cursor: pointer;
@@ -52,25 +63,31 @@ function Index() {
       }
     }
     .search-result {
-      &-text {
-        padding: 50px 0 20px;
-        font-weight: normal;
-        font-size: 28px;
-        span {
-          padding-left: 6px;
-          font-size: 16px;
-          strong {
-            color: #949142;
-          }
+    }
+  `;
+
+  const SearchResultComp = styled.div`
+    .search-result-text {
+      padding: 50px 0 20px;
+      font-weight: normal;
+      font-size: 28px;
+      span {
+        padding-left: 6px;
+        font-size: 16px;
+        strong {
+          color: #949142;
         }
       }
-      &-list {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        svg {
-          color: var(--green);
-        }
+    }
+    .search-result-list {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      @media (max-width: 980px) {
+        display: block;
+      }
+      svg {
+        color: var(--green);
       }
     }
   `;
@@ -88,13 +105,15 @@ function Index() {
     console.log("dataObj", dataObj);
     resetSearch();
     dispatch(setSearchData(dataObj));
-    // history.push("/search");
   };
 
   const resetSearch = () => {
     skip = 0;
     endFlag = false;
     setResult([]);
+    // setKeyword("")
+    // setStartDate("")
+    // setCity("")
   };
 
   const chainStr = (arr) => {
@@ -102,12 +121,15 @@ function Index() {
     return newArr.join(" and ");
   };
 
+  const transDate = (date) => {
+    const time = new Date(date);
+    return [time.getMonth() + 1, time.getFullYear()];
+  };
+
   const getData = async () => {
     let list = [];
     const { keyword, city } = searchData;
-    console.log("startDate", startDate);
-    let [month, year] = [11, 2021];
-    // let [month, year] = startDate.split("/");
+    let [month, year] = searchData.type === "activity" ? transDate(startDate) : [];
     let nameStr = keyword ? `Name eq '${keyword}'` : "";
     let monthStr = month ? `month(StartTime) eq ${month}` : "";
     let yearStr = year ? `year(StartTime) eq ${year}` : "";
@@ -115,7 +137,7 @@ function Index() {
       $top: 30,
       $skip: skip,
       $filter: chainStr([nameStr, monthStr, yearStr]),
-      city: city?.value,
+      city: city,
     };
     setPennding(true);
     switch (searchData.type) {
@@ -141,28 +163,18 @@ function Index() {
     if (endFlag) return;
     skip += 30;
     getData();
-    console.log("3333");
-  };
-
-  const handleScroll = (e) => {
-    const bottom = e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
-    console.log("scroll", e.target.scrollTop);
-    bottom && loadMore();
   };
 
   useEffect(() => {
     window.onscroll = function () {
       if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight) {
-        console.log("At the bottom!");
-        loadMore();
+        console.log("is-bottom");
+        !pennding && loadMore();
       }
     };
-
-    // document.addEventListener("scroll", (e) => {
-    //   const bottom = e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
-    //   console.log("scroll", e.target.scrollTop);
-    //   bottom && loadMore();
-    // });
+    return () => {
+      dispatch(setSearchData({ type: searchData.type }));
+    };
   }, []);
 
   useEffect(() => {
@@ -191,7 +203,7 @@ function Index() {
           搜尋
         </button>
       </div>
-      <div className="search-result">
+      <SearchResultComp>
         <h3 className="search-result-text">
           搜尋結果
           <span>
@@ -211,7 +223,7 @@ function Index() {
             </div>
           )}
         </div>
-      </div>
+      </SearchResultComp>
     </SearchPageComp>
   );
 }

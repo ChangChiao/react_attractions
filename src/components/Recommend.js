@@ -22,6 +22,9 @@ const RecommendComp = styled.div`
     justify-content: space-between;
     flex-wrap: wrap;
     margin-top: 16px;
+    @media (max-width: 980px) {
+      display: block;
+    }
   }
 `;
 

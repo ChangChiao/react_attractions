@@ -13,8 +13,16 @@ const TitleComp = styled.div`
   padding: 5% 10%;
   display: flex;
   justify-content: center;
+  @media (max-width: 980px) {
+    display: block;
+    text-align: center;
+    padding: 5% 0;
+  }
   .area {
     width: 40%;
+    @media (max-width: 980px) {
+      width: 100%;
+    }
   }
   .main-title {
     font-size: 36px;
@@ -22,7 +30,7 @@ const TitleComp = styled.div`
   }
   .sub-title {
     font-size: 16px;
-    padding-top: 20px;
+    padding: 20px 0;
     color: #646464;
     svg {
       color: var(--green_light);
@@ -35,6 +43,9 @@ const TitleComp = styled.div`
   .search-input {
     width: 300px;
     margin-top: 10px;
+    @media (max-width: 980px) {
+      width: 100%;
+    }
   }
   .search-btn {
     width: 300px;
@@ -43,6 +54,9 @@ const TitleComp = styled.div`
     letter-spacing: 5px;
     display: block;
     cursor: pointer;
+    @media (max-width: 980px) {
+      width: 100%;
+    }
     svg {
       margin-right: 5px;
       cursor: pointer;

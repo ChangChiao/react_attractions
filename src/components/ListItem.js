@@ -14,13 +14,26 @@ const ListComp = styled.div`
   margin-top: 10px;
   background-color: var(--gray);
   transition-duration: 0.3s;
-  &:hover {
-    transform: translate(2px, 2px);
-    background: #eee;
+  height: 120px;
+  @media (max-width: 980px) {
+    width: 100%;
   }
-  img {
+  &:hover {
+    .cover {
+      img {
+        transform: scale(1.1);
+      }
+    }
+  }
+  .cover {
     width: 150px;
-    object-fit: cover;
+    overflow: hidden;
+    img {
+      transition-duration: 0.3s;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
   .text {
     flex: 1;
@@ -55,7 +68,9 @@ function ListItem({ data }) {
         handleClick();
       }}
     >
-      <img src={setImage(data.Picture)} />
+      <div className="cover">
+        <img src={setImage(data.Picture)} />
+      </div>
       <div className="text">
         <p className="date">{`${transDate(data.StartTime)}-${transDate(data.EndTime)}`}</p>
         <p className="item-title">{data.Name}</p>
