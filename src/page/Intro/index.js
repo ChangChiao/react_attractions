@@ -41,15 +41,24 @@ const IntroComp = styled.div`
   .intro {
     display: flex;
     justify-content: space-between;
+    @media (max-width: 980px) {
+      display: block;
+    }
   }
   .map {
     width: 48%;
+    @media (max-width: 980px) {
+      width: 100%;
+    }
   }
   .detail {
     width: 48%;
     background: #f9f9f9;
     border-radius: 20px;
     padding: 20px 10px;
+    @media (max-width: 980px) {
+      width: 100%;
+    }
     p {
       padding: 8px 0;
       display: flex;

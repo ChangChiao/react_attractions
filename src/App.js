@@ -1,9 +1,8 @@
-import "./App.css";
 import { Route } from "react-router-dom";
-import store from "./store";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
 import { Provider } from "react-redux";
+import store from "./store";
 import DefaultTemp from "./components/DefaultTemp";
 import Index from "./page/Index/index";
 import Attraction from "./page/Attraction";

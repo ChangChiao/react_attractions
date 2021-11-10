@@ -9,6 +9,7 @@ function Map({ Position = {} }) {
   return (
     <div style={{ height: "100%", width: "100%" }}>
       <GoogleMapReact
+        bootstrapURLKeys={{ key: "AIzaSyCvxuaDx8aGQtSNvhDyWnEqJEqTqhVVpss" }}
         defaultCenter={{
           lat: Position.PositionLat || "22.63",
           lng: Position.PositionLon || "121.5073",
