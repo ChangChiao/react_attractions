@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+import DropDown from "../../../components/DropDown";
+import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt, faSearch } from "@fortawesome/free-solid-svg-icons";
-import DropDown from "../../../components/DropDown";
 import { setSearchData } from "../../../store/slice/searchDataSlice";
 import { TYPE_LIST } from "../../../global/constant";
 

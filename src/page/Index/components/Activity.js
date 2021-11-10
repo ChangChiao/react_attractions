@@ -27,7 +27,7 @@ function Activity() {
   const getAct = async () => {
     const sendData = {
       $top: 4,
-      $orderBy: "EndTime",
+      $orderBy: "EndTime desc",
     };
     const result = await getActivity(sendData);
     setList(result);
