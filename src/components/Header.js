@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -135,6 +135,14 @@ function Header() {
       return !prevState;
     });
   };
+
+  useEffect(() => {
+    if (active) {
+      document.body.style = "position:fixed";
+    } else {
+      document.body.style = "";
+    }
+  }, [active]);
   return (
     <>
       <HeaderComp>
@@ -158,9 +166,9 @@ function Header() {
       <MobileComp>
         <h1 onClick={goHome}>台灣走走 • Tai Walk</h1>
         <HamburgerComp active={active} onClick={controlMenu}>
-          <span class="line"></span>
-          <span class="line"></span>
-          <span class="line"></span>
+          <span className="line"></span>
+          <span className="line"></span>
+          <span className="line"></span>
         </HamburgerComp>
       </MobileComp>
       {active && (

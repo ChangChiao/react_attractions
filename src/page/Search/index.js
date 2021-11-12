@@ -20,6 +20,7 @@ function Index() {
   const dispatch = useDispatch();
   const [result, setResult] = useState([]);
   const [city, setCity] = useState("");
+  const [str, setStr] = useState("");
   const [keyword, setKeyword] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [pennding, setPennding] = useState(false);
@@ -90,6 +91,18 @@ function Index() {
         color: var(--green);
       }
     }
+    .no-data {
+      font-size: 20px;
+      line-height: 24px;
+      width: 200px;
+      margin: 0 auto;
+      text-align: center;
+      svg {
+        display: block;
+        font-size: 60px;
+        margin: 20px auto;
+      }
+    }
   `;
   const getCrumb = () => {
     const { label } = TYPE_LIST.find((vo) => vo.value === searchData.type);
@@ -111,9 +124,6 @@ function Index() {
     skip = 0;
     endFlag = false;
     setResult([]);
-    // setKeyword("")
-    // setStartDate("")
-    // setCity("")
   };
 
   const chainStr = (arr) => {
@@ -140,22 +150,26 @@ function Index() {
       city: city,
     };
     setPennding(true);
-    switch (searchData.type) {
-      case "activity":
-        list = await getActivity(sendData);
-        break;
-      case "spot":
-        list = await getSpot(sendData);
-        break;
-      default:
-        list = await getRestaurant(sendData);
-        break;
-    }
-    setPennding(false);
-    if (list.length === 0) {
-      endFlag = true;
-    } else {
-      setResult((prevState) => [...prevState, ...list]);
+    try {
+      switch (searchData.type) {
+        case "activity":
+          list = await getActivity(sendData);
+          break;
+        case "spot":
+          list = await getSpot(sendData);
+          break;
+        default:
+          list = await getRestaurant(sendData);
+          break;
+      }
+      setPennding(false);
+      if (list.length === 0) {
+        endFlag = true;
+      } else {
+        setResult((prevState) => [...prevState, ...list]);
+      }
+    } catch (error) {
+      setPennding(false);
     }
   };
 
@@ -165,23 +179,27 @@ function Index() {
     getData();
   };
 
-  useEffect(() => {
-    window.onscroll = function () {
-      if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight) {
-        console.log("is-bottom");
-        !pennding && loadMore();
-      }
-    };
-    return () => {
-      dispatch(setSearchData({ type: searchData.type }));
-    };
-  }, []);
+  const handleChange = (event) => {
+    setStr(event.target.value);
+  };
 
-  useEffect(() => {
-    getCrumb();
-    getData();
-    console.log("2222");
-  }, [searchData]);
+  // useEffect(() => {
+  //   window.onscroll = function () {
+  //     if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight) {
+  //       console.log("is-bottom");
+  //       !pennding && loadMore();
+  //     }
+  //   };
+  //   return () => {
+  //     dispatch(setSearchData({ type: searchData.type }));
+  //   };
+  // }, []);
+
+  // useEffect(() => {
+  //   getCrumb();
+  //   getData();
+  //   console.log("2222");
+  // }, [searchData]);
 
   return (
     <SearchPageComp>
@@ -195,9 +213,11 @@ function Index() {
           placeholder={`${placeholderConfig[searchData.type]}請輸入關鍵字`}
           value={keyword}
           onChange={(e) => {
+            console.log("ffsdfdfs", e.target.value);
             setKeyword(e.target.value);
           }}
         />
+        <input className="search-input2" placeholder={`請輸入關鍵字`} value={str} onChange={handleChange} />
         <button className="search-btn" onClick={saveSearchData}>
           <FontAwesomeIcon icon={faSearch} />
           搜尋
@@ -216,7 +236,7 @@ function Index() {
             return <ListCard key={vo.ID} data={{ ...vo, type: searchData.type }} />;
           })}
           {result.length === 0 && (
-            <div>
+            <div className="no-data">
               　<FontAwesomeIcon icon={faFileAlt} />
               <p>查無資料</p>
               <p>請重新查詢</p>
