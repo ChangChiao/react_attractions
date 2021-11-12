@@ -13,6 +13,81 @@ import DatePicker from "react-datepicker";
 import Loading from "../../components/Loading";
 import "react-datepicker/dist/react-datepicker.css";
 
+const SearchPageComp = styled.div`
+  padding-top: 50px;
+  .search-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @media (max-width: 980px) {
+      display: block;
+    }
+    .search-input {
+      flex: 1;
+      min-height: 42px;
+      margin-right: 5px;
+      @media (max-width: 980px) {
+        width: 100%;
+        margin: 10px 0;
+      }
+    }
+    .search-btn {
+      width: 160px;
+      height: 40px;
+      letter-spacing: 5px;
+      display: block;
+      cursor: pointer;
+      @media (max-width: 980px) {
+        width: 100%;
+      }
+      svg {
+        margin-right: 5px;
+        cursor: pointer;
+      }
+    }
+  }
+  .search-result {
+  }
+`;
+
+const SearchResultComp = styled.div`
+  .search-result-text {
+    padding: 50px 0 20px;
+    font-weight: normal;
+    font-size: 28px;
+    span {
+      padding-left: 6px;
+      font-size: 16px;
+      strong {
+        color: #949142;
+      }
+    }
+  }
+  .search-result-list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    @media (max-width: 980px) {
+      display: block;
+    }
+    svg {
+      color: var(--green);
+    }
+  }
+  .no-data {
+    font-size: 20px;
+    line-height: 24px;
+    width: 200px;
+    margin: 0 auto;
+    text-align: center;
+    svg {
+      display: block;
+      font-size: 60px;
+      margin: 20px auto;
+    }
+  }
+`;
+
 function Index() {
   let endFlag = false;
   let skip = 0;
@@ -29,94 +104,21 @@ function Index() {
     spot: "你想去哪裡？",
     restaurant: "你想吃什麼？",
   };
-  const SearchPageComp = styled.div`
-    padding-top: 50px;
-    .search-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      @media (max-width: 980px) {
-        display: block;
-      }
-      .search-input {
-        flex: 1;
-        min-height: 42px;
-        margin-right: 5px;
-        @media (max-width: 980px) {
-          width: 100%;
-          margin: 10px 0;
-        }
-      }
-      .search-btn {
-        width: 160px;
-        height: 40px;
-        letter-spacing: 5px;
-        display: block;
-        cursor: pointer;
-        @media (max-width: 980px) {
-          width: 100%;
-        }
-        svg {
-          margin-right: 5px;
-          cursor: pointer;
-        }
-      }
-    }
-    .search-result {
-    }
-  `;
 
-  const SearchResultComp = styled.div`
-    .search-result-text {
-      padding: 50px 0 20px;
-      font-weight: normal;
-      font-size: 28px;
-      span {
-        padding-left: 6px;
-        font-size: 16px;
-        strong {
-          color: #949142;
-        }
-      }
-    }
-    .search-result-list {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      @media (max-width: 980px) {
-        display: block;
-      }
-      svg {
-        color: var(--green);
-      }
-    }
-    .no-data {
-      font-size: 20px;
-      line-height: 24px;
-      width: 200px;
-      margin: 0 auto;
-      text-align: center;
-      svg {
-        display: block;
-        font-size: 60px;
-        margin: 20px auto;
-      }
-    }
-  `;
   const getCrumb = () => {
     const { label } = TYPE_LIST.find((vo) => vo.value === searchData.type);
     return label;
   };
 
   const saveSearchData = () => {
-    // const dataObj = {
-    //   keyword,
-    //   city: city?.value,
-    //   type: searchData.type,
-    // };
-    // console.log("dataObj", dataObj);
-    // resetSearch();
-    // dispatch(setSearchData(dataObj));
+    const dataObj = {
+      keyword,
+      city: city?.value,
+      type: searchData.type,
+    };
+    console.log("dataObj", dataObj);
+    resetSearch();
+    dispatch(setSearchData(dataObj));
   };
 
   const resetSearch = () => {
@@ -182,23 +184,22 @@ function Index() {
     setStr(event.target.value);
   };
 
-  // useEffect(() => {
-  //   window.onscroll = function () {
-  //     if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight) {
-  //       console.log("is-bottom");
-  //       !pennding && loadMore();
-  //     }
-  //   };
-  //   return () => {
-  //     dispatch(setSearchData({ type: searchData.type }));
-  //   };
-  // }, []);
+  useEffect(() => {
+    window.onscroll = function () {
+      if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight) {
+        console.log("is-bottom");
+        !pennding && loadMore();
+      }
+    };
+    return () => {
+      dispatch(setSearchData({ type: searchData.type }));
+    };
+  }, []);
 
-  // useEffect(() => {
-  //   getCrumb();
-  //   getData();
-  //   console.log("2222");
-  // }, [searchData]);
+  useEffect(() => {
+    getCrumb();
+    getData();
+  }, [searchData]);
 
   return (
     <SearchPageComp>
@@ -212,11 +213,9 @@ function Index() {
           placeholder={`${placeholderConfig[searchData.type]}請輸入關鍵字`}
           value={keyword}
           onChange={(e) => {
-            console.log("ffsdfdfs", e.target.value);
             setKeyword(e.target.value);
           }}
         />
-        <input className="search-input2" placeholder={`請輸入關鍵字`} value={str} onChange={handleChange} />
         <button className="search-btn" onClick={saveSearchData}>
           <FontAwesomeIcon icon={faSearch} />
           搜尋

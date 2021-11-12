@@ -86,7 +86,6 @@ function Index() {
   const saveState = () => {
     // if (!state) {
     //   const data = localStorage.getItem("intro");
-    //   console.log("999999", data);
     //   setData(JSON.parse(data));
     //   return;
     // }
@@ -97,10 +96,15 @@ function Index() {
     const { PictureUrl1 } = Picture;
     return PictureUrl1 ? PictureUrl1 : process.env.PUBLIC_URL + `/image/default/act.jpg`;
   };
+
+  const randomNum = (x) => {
+    const num = Math.floor(Math.random() * x) + 1;
+    return num * 4;
+  };
   const getRecommend = async () => {
-    console.log("introData", introData);
     const sendData = {
       $top: 4,
+      $skip: randomNum(30),
     };
     let title = "";
     let result = [];
@@ -121,6 +125,7 @@ function Index() {
 
     setTitle(title);
     setRecommend({
+      type: introData.type,
       title: "還有這些不能錯過的" + title,
       list: result,
     });
@@ -156,7 +161,6 @@ function Index() {
   }, []);
 
   useEffect(() => {
-    console.log("introData", introData);
     getRecommend();
     getTag();
   }, [introData]);

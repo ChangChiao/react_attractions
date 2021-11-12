@@ -35,7 +35,6 @@ const getCity = (data) => {
 
 export const getRestaurant = (sendData) => {
   const { cityPath, data } = getCity(sendData);
-  console.log("cityPath", cityPath);
   return api.get(API_RESTAURANT + `/${cityPath}`, { params: { ...data } }, setConfig);
 };
 
