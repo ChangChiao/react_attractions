@@ -26,8 +26,8 @@ function FoodRecommend() {
   return (
     <FoodRecommendComp>
       <div className="title-bar">
-        <h3 class="title">一再回訪美食</h3>
-        <span class="more">
+        <h3 className="title">一再回訪美食</h3>
+        <span className="more">
           查看更多活動
           <FontAwesomeIcon className="mark" icon={faChevronRight} />
         </span>

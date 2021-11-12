@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "https://changchiao.github.io/react_attractions/static/css/main.7a4ed768.chunk.css",
-    "main.js": "https://changchiao.github.io/react_attractions/static/js/main.f55e77c9.chunk.js",
-    "main.js.map": "https://changchiao.github.io/react_attractions/static/js/main.f55e77c9.chunk.js.map",
+    "main.css": "https://changchiao.github.io/react_attractions/static/css/main.a7c2d4a0.chunk.css",
+    "main.js": "https://changchiao.github.io/react_attractions/static/js/main.602007e8.chunk.js",
+    "main.js.map": "https://changchiao.github.io/react_attractions/static/js/main.602007e8.chunk.js.map",
     "runtime-main.js": "https://changchiao.github.io/react_attractions/static/js/runtime-main.cec33a9f.js",
     "runtime-main.js.map": "https://changchiao.github.io/react_attractions/static/js/runtime-main.cec33a9f.js.map",
     "static/css/2.c1502b9f.chunk.css": "https://changchiao.github.io/react_attractions/static/css/2.c1502b9f.chunk.css",
-    "static/js/2.5368e557.chunk.js": "https://changchiao.github.io/react_attractions/static/js/2.5368e557.chunk.js",
-    "static/js/2.5368e557.chunk.js.map": "https://changchiao.github.io/react_attractions/static/js/2.5368e557.chunk.js.map",
+    "static/js/2.19eb058e.chunk.js": "https://changchiao.github.io/react_attractions/static/js/2.19eb058e.chunk.js",
+    "static/js/2.19eb058e.chunk.js.map": "https://changchiao.github.io/react_attractions/static/js/2.19eb058e.chunk.js.map",
     "static/js/3.403647ba.chunk.js": "https://changchiao.github.io/react_attractions/static/js/3.403647ba.chunk.js",
     "static/js/3.403647ba.chunk.js.map": "https://changchiao.github.io/react_attractions/static/js/3.403647ba.chunk.js.map",
     "index.html": "https://changchiao.github.io/react_attractions/index.html",
     "static/css/2.c1502b9f.chunk.css.map": "https://changchiao.github.io/react_attractions/static/css/2.c1502b9f.chunk.css.map",
-    "static/css/main.7a4ed768.chunk.css.map": "https://changchiao.github.io/react_attractions/static/css/main.7a4ed768.chunk.css.map",
-    "static/js/2.5368e557.chunk.js.LICENSE.txt": "https://changchiao.github.io/react_attractions/static/js/2.5368e557.chunk.js.LICENSE.txt"
+    "static/css/main.a7c2d4a0.chunk.css.map": "https://changchiao.github.io/react_attractions/static/css/main.a7c2d4a0.chunk.css.map",
+    "static/js/2.19eb058e.chunk.js.LICENSE.txt": "https://changchiao.github.io/react_attractions/static/js/2.19eb058e.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.cec33a9f.js",
     "static/css/2.c1502b9f.chunk.css",
-    "static/js/2.5368e557.chunk.js",
-    "static/css/main.7a4ed768.chunk.css",
-    "static/js/main.f55e77c9.chunk.js"
+    "static/js/2.19eb058e.chunk.js",
+    "static/css/main.a7c2d4a0.chunk.css",
+    "static/js/main.602007e8.chunk.js"
   ]
 }

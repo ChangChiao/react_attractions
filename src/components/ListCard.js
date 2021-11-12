@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { setIntroData } from "../store/slice/introSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 const Card = styled.div`
@@ -36,16 +38,17 @@ const Card = styled.div`
 `;
 
 function ListCard({ data }) {
+  const dispatch = useDispatch();
   const history = useHistory();
   const setImage = (Picture = {}) => {
     const { PictureUrl1 } = Picture;
     return PictureUrl1 ? PictureUrl1 : process.env.PUBLIC_URL + `/image/default/act.jpg`;
   };
   const handleClick = () => {
-    // history.push(link);
+    dispatch(setIntroData(data));
     history.push({
-      pathname: "/intro",
-      state: data,
+      pathname: `/intro`,
+      // state: data,
     });
   };
   return (

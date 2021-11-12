@@ -6,7 +6,6 @@ const userAPI = () => {
       return res.json();
     })
     .then((result) => {
-      console.log("result", result);
       return result;
     });
 };

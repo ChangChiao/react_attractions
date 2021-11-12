@@ -2,11 +2,10 @@ import { configureStore } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
 import { combineReducers } from "redux";
-import todoReducer from "./slice/todo";
 import citySlice from "./slice/citySlice";
 import counterReducer from "./slice/counterSlice";
 import searchReducer from "./slice/searchDataSlice";
-// import usersReducer from "./slice/apiTest";
+import introReducer from "./slice/introSlice";
 import thunk from "redux-thunk";
 
 const persistConfig = {
@@ -16,9 +15,9 @@ const persistConfig = {
 
 const reducers = combineReducers({
   city: citySlice,
-  todo: todoReducer,
   counter: counterReducer,
   search: searchReducer,
+  intro: introReducer,
   //   users: usersReducer,
 });
 
@@ -27,5 +26,5 @@ const persistedReducer = persistReducer(persistConfig, reducers);
 export default configureStore({
   reducer: persistedReducer,
   middleware: [thunk],
-  whitelist: ["cityList", "searchData"],
+  whitelist: ["cityList", "searchData", "introData"],
 });

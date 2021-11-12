@@ -3,10 +3,9 @@ import styled from "styled-components";
 import CitySelect from "../../components/CitySelect";
 import ListCard from "../../components/ListCard";
 import Crumb from "../../components/Crumb";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faFileAlt } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch } from "react-redux";
 import { TYPE_LIST } from "../../global/constant";
 import { setSearchData } from "../../store/slice/searchDataSlice";
 import { getActivity, getSpot, getRestaurant } from "../../utils/api";
@@ -14,12 +13,88 @@ import DatePicker from "react-datepicker";
 import Loading from "../../components/Loading";
 import "react-datepicker/dist/react-datepicker.css";
 
+const SearchPageComp = styled.div`
+  padding-top: 50px;
+  .search-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @media (max-width: 980px) {
+      display: block;
+    }
+    .search-input {
+      flex: 1;
+      min-height: 42px;
+      margin-right: 5px;
+      @media (max-width: 980px) {
+        width: 100%;
+        margin: 10px 0;
+      }
+    }
+    .search-btn {
+      width: 160px;
+      height: 40px;
+      letter-spacing: 5px;
+      display: block;
+      cursor: pointer;
+      @media (max-width: 980px) {
+        width: 100%;
+      }
+      svg {
+        margin-right: 5px;
+        cursor: pointer;
+      }
+    }
+  }
+  .search-result {
+  }
+`;
+
+const SearchResultComp = styled.div`
+  .search-result-text {
+    padding: 50px 0 20px;
+    font-weight: normal;
+    font-size: 28px;
+    span {
+      padding-left: 6px;
+      font-size: 16px;
+      strong {
+        color: #949142;
+      }
+    }
+  }
+  .search-result-list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    @media (max-width: 980px) {
+      display: block;
+    }
+    svg {
+      color: var(--green);
+    }
+  }
+  .no-data {
+    font-size: 20px;
+    line-height: 24px;
+    width: 200px;
+    margin: 0 auto;
+    text-align: center;
+    svg {
+      display: block;
+      font-size: 60px;
+      margin: 20px auto;
+    }
+  }
+`;
+
 function Index() {
   let endFlag = false;
   let skip = 0;
   const dispatch = useDispatch();
   const [result, setResult] = useState([]);
   const [city, setCity] = useState("");
+  const [str, setStr] = useState("");
   const [keyword, setKeyword] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [pennding, setPennding] = useState(false);
@@ -29,68 +104,7 @@ function Index() {
     spot: "你想去哪裡？",
     restaurant: "你想吃什麼？",
   };
-  const SearchPageComp = styled.div`
-    padding-top: 50px;
-    .search-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      @media (max-width: 980px) {
-        display: block;
-      }
-      .search-input {
-        flex: 1;
-        min-height: 42px;
-        margin-right: 5px;
-        @media (max-width: 980px) {
-          width: 100%;
-          margin: 10px 0;
-        }
-      }
-      .search-btn {
-        width: 160px;
-        height: 40px;
-        letter-spacing: 5px;
-        display: block;
-        cursor: pointer;
-        @media (max-width: 980px) {
-          width: 100%;
-        }
-        svg {
-          margin-right: 5px;
-          cursor: pointer;
-        }
-      }
-    }
-    .search-result {
-    }
-  `;
 
-  const SearchResultComp = styled.div`
-    .search-result-text {
-      padding: 50px 0 20px;
-      font-weight: normal;
-      font-size: 28px;
-      span {
-        padding-left: 6px;
-        font-size: 16px;
-        strong {
-          color: #949142;
-        }
-      }
-    }
-    .search-result-list {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      @media (max-width: 980px) {
-        display: block;
-      }
-      svg {
-        color: var(--green);
-      }
-    }
-  `;
   const getCrumb = () => {
     const { label } = TYPE_LIST.find((vo) => vo.value === searchData.type);
     return label;
@@ -111,9 +125,6 @@ function Index() {
     skip = 0;
     endFlag = false;
     setResult([]);
-    // setKeyword("")
-    // setStartDate("")
-    // setCity("")
   };
 
   const chainStr = (arr) => {
@@ -140,22 +151,26 @@ function Index() {
       city: city,
     };
     setPennding(true);
-    switch (searchData.type) {
-      case "activity":
-        list = await getActivity(sendData);
-        break;
-      case "spot":
-        list = await getSpot(sendData);
-        break;
-      default:
-        list = await getRestaurant(sendData);
-        break;
-    }
-    setPennding(false);
-    if (list.length === 0) {
-      endFlag = true;
-    } else {
-      setResult((prevState) => [...prevState, ...list]);
+    try {
+      switch (searchData.type) {
+        case "activity":
+          list = await getActivity(sendData);
+          break;
+        case "spot":
+          list = await getSpot(sendData);
+          break;
+        default:
+          list = await getRestaurant(sendData);
+          break;
+      }
+      setPennding(false);
+      if (list.length === 0) {
+        endFlag = true;
+      } else {
+        setResult((prevState) => [...prevState, ...list]);
+      }
+    } catch (error) {
+      setPennding(false);
     }
   };
 
@@ -163,6 +178,10 @@ function Index() {
     if (endFlag) return;
     skip += 30;
     getData();
+  };
+
+  const handleChange = (event) => {
+    setStr(event.target.value);
   };
 
   useEffect(() => {
@@ -180,7 +199,6 @@ function Index() {
   useEffect(() => {
     getCrumb();
     getData();
-    console.log("2222");
   }, [searchData]);
 
   return (
@@ -216,7 +234,7 @@ function Index() {
             return <ListCard key={vo.ID} data={{ ...vo, type: searchData.type }} />;
           })}
           {result.length === 0 && (
-            <div>
+            <div className="no-data">
               　<FontAwesomeIcon icon={faFileAlt} />
               <p>查無資料</p>
               <p>請重新查詢</p>

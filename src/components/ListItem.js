@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { setIntroData } from "../store/slice/introSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { transDate } from "../utils/common";
@@ -51,15 +53,17 @@ const ListComp = styled.div`
 `;
 
 function ListItem({ data }) {
+  const dispatch = useDispatch();
   const history = useHistory();
   const setImage = (Picture = {}) => {
     const { PictureUrl1 } = Picture;
     return PictureUrl1 ? PictureUrl1 : process.env.PUBLIC_URL + `/image/default/act.jpg`;
   };
   const handleClick = () => {
+    dispatch(setIntroData(data));
     history.push({
       pathname: "/intro",
-      state: data,
+      // state: data,
     });
   };
   return (

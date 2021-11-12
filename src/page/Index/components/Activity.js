@@ -41,8 +41,8 @@ function Activity() {
   return (
     <ActComp>
       <div className="title-bar">
-        <h3 class="title">近期活動</h3>
-        <span class="more">
+        <h3 className="title">近期活動</h3>
+        <span className="more">
           查看更多活動
           <FontAwesomeIcon className="mark" icon={faChevronRight} />
         </span>

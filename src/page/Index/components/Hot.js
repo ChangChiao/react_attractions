@@ -26,8 +26,8 @@ function Hot() {
   return (
     <HotComp>
       <div className="title-bar">
-        <h3 class="title">熱門打卡景點</h3>
-        <span class="more">
+        <h3 className="title">熱門打卡景點</h3>
+        <span className="more">
           查看更多活動
           <FontAwesomeIcon className="mark" icon={faChevronRight} />
         </span>
