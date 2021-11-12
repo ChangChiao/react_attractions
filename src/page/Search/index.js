@@ -3,10 +3,9 @@ import styled from "styled-components";
 import CitySelect from "../../components/CitySelect";
 import ListCard from "../../components/ListCard";
 import Crumb from "../../components/Crumb";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faFileAlt } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch } from "react-redux";
 import { TYPE_LIST } from "../../global/constant";
 import { setSearchData } from "../../store/slice/searchDataSlice";
 import { getActivity, getSpot, getRestaurant } from "../../utils/api";
@@ -110,14 +109,14 @@ function Index() {
   };
 
   const saveSearchData = () => {
-    const dataObj = {
-      keyword,
-      city: city?.value,
-      type: searchData.type,
-    };
-    console.log("dataObj", dataObj);
-    resetSearch();
-    dispatch(setSearchData(dataObj));
+    // const dataObj = {
+    //   keyword,
+    //   city: city?.value,
+    //   type: searchData.type,
+    // };
+    // console.log("dataObj", dataObj);
+    // resetSearch();
+    // dispatch(setSearchData(dataObj));
   };
 
   const resetSearch = () => {

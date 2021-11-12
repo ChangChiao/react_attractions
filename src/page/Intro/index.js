@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Recommend from "../../components/Recommend";
-import { useLocation } from "react-router";
+// import { useLocation } from "react-router";
+import { useSelector } from "react-redux";
 import Map from "./components/Map";
 import { getActivity, getSpot, getRestaurant } from "../../utils/api";
 import InfoCardAct from "../../components/InfoCardAct";
@@ -9,6 +10,7 @@ import InfoCardRest from "../../components/InfoCardRest";
 import InfoCardSpot from "../../components/InfoCardSpot";
 import Crumb from "../../components/Crumb";
 import { TYPE_LIST } from "../../global/constant";
+
 const IntroComp = styled.div`
   margin-top: 30px;
   .main-cover {
@@ -75,35 +77,34 @@ const IntroComp = styled.div`
   }
 `;
 function Index() {
-  const { state } = useLocation();
+  // const { state } = useLocation();
   const [data, setData] = useState({});
   const [recommend, setRecommend] = useState({});
   const [tag, setTag] = useState([]);
   const [title, setTitle] = useState("");
+  const introData = useSelector((state) => state.intro.introData);
   const saveState = () => {
-    if (!state) {
-      const data = localStorage.getItem("intro");
-      setData(JSON.parse(data));
-      return;
-    }
-    localStorage.setItem("intro", JSON.stringify(state));
-    setData(state);
+    // if (!state) {
+    //   const data = localStorage.getItem("intro");
+    //   console.log("999999", data);
+    //   setData(JSON.parse(data));
+    //   return;
+    // }
+    // localStorage.setItem("intro", JSON.stringify(state));
+    // setData(state);
   };
   const setImage = (Picture = {}) => {
     const { PictureUrl1 } = Picture;
     return PictureUrl1 ? PictureUrl1 : process.env.PUBLIC_URL + `/image/default/act.jpg`;
   };
   const getRecommend = async () => {
+    console.log("introData", introData);
     const sendData = {
       $top: 4,
     };
     let title = "";
     let result = [];
-    setTimeout(() => {
-      console.log("data.type", data.type);
-      console.log("state", state);
-    }, 3000);
-    switch (data.type) {
+    switch (introData.type) {
       case "activity":
         title = "活動";
         result = await getActivity(sendData);
@@ -126,44 +127,45 @@ function Index() {
   };
 
   const InfoCard = () => {
-    switch (data.type) {
+    switch (introData.type) {
       case "activity":
-        return <InfoCardAct data={data} />;
+        return <InfoCardAct data={introData} />;
       case "spot":
-        return <InfoCardSpot data={data} />;
+        return <InfoCardSpot data={introData} />;
       default:
-        return <InfoCardRest data={data} />;
+        return <InfoCardRest data={introData} />;
     }
   };
 
   const getTag = () => {
     let arr = [];
-    for (const [key, value] of Object.entries(data)) {
+    for (const [key, value] of Object.entries(introData)) {
       if (key.includes("Class")) arr.push(`#${value}`);
     }
     if (arr.length === 0) arr.push("#熱門打卡");
     setTag(arr);
   };
   const getCrumb = () => {
-    if (!data.type) return "";
-    const { label } = TYPE_LIST.find((vo) => vo.value === data.type);
+    if (!introData.type) return "";
+    const { label } = TYPE_LIST.find((vo) => vo.value === introData.type);
     return label;
   };
 
   useEffect(() => {
-    saveState();
+    // saveState();
   }, []);
 
   useEffect(() => {
+    console.log("introData", introData);
     getRecommend();
     getTag();
-  }, [data]);
+  }, [introData]);
 
   return (
     <IntroComp>
-      <Crumb type={getCrumb()} title={data.Name} />
-      <img className="main-cover" src={setImage(data.Picture)} />
-      <h2 className="intro-title">{data.Name}</h2>
+      <Crumb type={getCrumb()} title={introData.Name} />
+      <img className="main-cover" src={setImage(introData.Picture)} />
+      <h2 className="intro-title">{introData.Name}</h2>
       <div className="tag-group">
         {tag.map((vo) => {
           return (
@@ -175,12 +177,12 @@ function Index() {
       </div>
       <div className="content">
         <h3 className="focus">{title}介紹:</h3>
-        <p>{data.type === "spot" ? data.DescriptionDetail : data.Description}</p>
+        <p>{introData.type === "spot" ? introData.DescriptionDetail : introData.Description}</p>
       </div>
       <div className="intro">
         <InfoCard />
         <div className="map">
-          <Map Position={data.Position} />
+          <Map Position={introData.Position} />
         </div>
       </div>
       <Recommend data={recommend} />
