@@ -31,6 +31,7 @@ function Activity() {
     const sendData = {
       $top: 4,
       $orderBy: "EndTime desc",
+      $filter: "Picture/PictureUrl1 ne null",
     };
     const result = await getActivity(sendData);
     setList(result);

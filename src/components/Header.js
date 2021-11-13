@@ -38,6 +38,9 @@ const MenuComp = styled.ul`
   li {
     margin: 0 10px;
     cursor: pointer;
+    &:hover {
+      color: var(--green);
+    }
   }
 `;
 
@@ -118,6 +121,7 @@ function Header() {
   const history = useHistory();
   const dispatch = useDispatch();
   const handleClick = (path) => {
+    console.log("path", path);
     const dataObj = {
       type: path,
     };

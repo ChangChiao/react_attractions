@@ -19,6 +19,7 @@ function Index() {
   const getSpotApi = async () => {
     const sendData = {
       $top: 4,
+      $filter: "Picture/PictureUrl1 ne null",
     };
     let result = await getSpot(sendData);
     setSpotList((prevState) => ({
@@ -30,6 +31,7 @@ function Index() {
   const getRestaurantApi = async () => {
     const sendData = {
       $top: 4,
+      $filter: "Picture/PictureUrl1 ne null",
     };
     let result = await getRestaurant(sendData);
     setRestList((prevState) => ({
