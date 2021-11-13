@@ -42,7 +42,7 @@ function ListCard({ data }) {
   const history = useHistory();
   const setImage = (Picture = {}) => {
     const { PictureUrl1 } = Picture;
-    return PictureUrl1 ? PictureUrl1 : process.env.PUBLIC_URL + `/image/default/act.jpg`;
+    return PictureUrl1 ? PictureUrl1 : process.env.PUBLIC_URL + `/image/default/default.png`;
   };
   const handleClick = () => {
     dispatch(setIntroData(data));
@@ -63,7 +63,7 @@ function ListCard({ data }) {
       <p className="item-title">{data.Name}</p>
       <p className="location">
         <FontAwesomeIcon className="mark" icon={faMapMarkerAlt} />
-        {(data.Address && data.Address.substring(0, 3)) || data.City}
+        {data.Address || data.City}
       </p>
     </Card>
   );

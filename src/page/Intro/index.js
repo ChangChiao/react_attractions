@@ -3,7 +3,8 @@ import styled from "styled-components";
 import Recommend from "../../components/Recommend";
 // import { useLocation } from "react-router";
 import { useSelector } from "react-redux";
-import Map from "./components/Map";
+// import Map from "./components/Map";
+import MapIframe from "./components/MapIframe";
 import { getActivity, getSpot, getRestaurant } from "../../utils/api";
 import InfoCardAct from "../../components/InfoCardAct";
 import InfoCardRest from "../../components/InfoCardRest";
@@ -18,6 +19,9 @@ const IntroComp = styled.div`
     height: 400px;
     object-fit: cover;
     border-radius: 20px;
+    @media (max-width: 980px) {
+      height: 200px;
+    }
   }
   .intro-title {
     font-size: 32px;
@@ -49,6 +53,7 @@ const IntroComp = styled.div`
   }
   .map {
     width: 48%;
+    height: 100%;
     @media (max-width: 980px) {
       width: 100%;
     }
@@ -187,7 +192,8 @@ function Index() {
       <div className="intro">
         <InfoCard />
         <div className="map">
-          <Map Position={introData.Position} />
+          <MapIframe Name={introData.Name} />
+          {/* <Map Position={introData.Position} /> */}
         </div>
       </div>
       <Recommend data={recommend} />

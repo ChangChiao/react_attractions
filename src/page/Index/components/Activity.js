@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { setSearchData } from "../../../store/slice/searchDataSlice";
 import ListItem from "../../../components/ListItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
@@ -26,6 +29,8 @@ const ActComp = styled.div`
 `;
 
 function Activity() {
+  const history = useHistory();
+  const dispatch = useDispatch();
   const [list, setList] = useState([]);
   const getAct = async () => {
     const sendData = {
@@ -36,6 +41,13 @@ function Activity() {
     const result = await getActivity(sendData);
     setList(result);
   };
+  const handleClick = () => {
+    const dataObj = {
+      type: "activity",
+    };
+    dispatch(setSearchData(dataObj));
+    history.push("/search");
+  };
   useEffect(() => {
     getAct();
   }, []);
@@ -43,7 +55,7 @@ function Activity() {
     <ActComp>
       <div className="title-bar">
         <h3 className="title">近期活動</h3>
-        <span className="more">
+        <span className="more" onClick={handleClick}>
           查看更多活動
           <FontAwesomeIcon className="mark" icon={faChevronRight} />
         </span>

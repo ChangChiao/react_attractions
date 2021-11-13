@@ -10,6 +10,7 @@ import { TYPE_LIST } from "../../global/constant";
 import { setSearchData } from "../../store/slice/searchDataSlice";
 import { getActivity, getSpot, getRestaurant } from "../../utils/api";
 import DatePicker from "react-datepicker";
+import Category from "../../components/Category";
 import Loading from "../../components/Loading";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -23,12 +24,27 @@ const SearchPageComp = styled.div`
       display: block;
     }
     .search-input {
-      flex: 1;
-      min-height: 42px;
+      flex-grow: 1;
+      margin-top: 5px;
       margin-right: 5px;
       @media (max-width: 980px) {
         width: 100%;
-        margin: 10px 0;
+        margin-bottom: 10px;
+      }
+    }
+    .react-datepicker-wrapper {
+      margin-top: 5px;
+      margin-right: 5px;
+      width: 200px;
+      input {
+        width: 200px;
+      }
+      @media (max-width: 980px) {
+        margin-top: 10px;
+        width: 100% !important;
+        .input {
+          height: 44px;
+        }
       }
     }
     .search-btn {
@@ -45,8 +61,6 @@ const SearchPageComp = styled.div`
         cursor: pointer;
       }
     }
-  }
-  .search-result {
   }
 `;
 
@@ -94,13 +108,17 @@ function Index() {
   const dispatch = useDispatch();
   const [result, setResult] = useState([]);
   const [city, _setCity] = useState("");
-  const [keyword, _setKeyword] = useState(null);
+  const [keyword, _setKeyword] = useState("");
+  const [category, _setCategory] = useState("");
   const [startDate, _setStartDate] = useState(new Date());
+  const [showCategory, _setShowCategory] = useState(true);
   const [pennding, setPennding] = useState(false);
   const searchData = useSelector((state) => state.search.searchData);
   const refKeyword = useRef(keyword);
   const refStartDate = useRef(startDate);
   const refCity = useRef(city);
+  const refCatacory = useRef(category);
+  const refShowCategory = useRef(showCategory);
 
   const setKeyword = (data) => {
     refKeyword.current = data;
@@ -117,6 +135,16 @@ function Index() {
     _setCity(data);
   };
 
+  const setCategory = (data) => {
+    refCatacory.current = data;
+    _setCategory(data);
+  };
+
+  const setShowCategory = (data) => {
+    refShowCategory.current = data;
+    _setShowCategory(data);
+  };
+
   const placeholderConfig = {
     activity: "你想玩什麼？",
     spot: "你想去哪裡？",
@@ -129,6 +157,7 @@ function Index() {
   };
 
   const saveSearchData = () => {
+    setCategory("");
     resetSearch();
     getData();
     // dispatch(setSearchData(dataObj));
@@ -153,6 +182,14 @@ function Index() {
     return [time.getMonth() + 1, time.getFullYear()];
   };
 
+  const queryStr = () => {
+    const word = ["Name", "Description"];
+    const wordArr = word.map((vo) => {
+      return ` contains(${vo}, '${refCatacory.current}') `;
+    });
+    return wordArr.join("or");
+  };
+
   const getData = async () => {
     console.log("refKeyword.current", refKeyword.current);
     let list = [];
@@ -161,10 +198,11 @@ function Index() {
     let monthStr = month ? `month(StartTime) eq ${month}` : "";
     let yearStr = year ? `year(StartTime) eq ${year}` : "";
     let noCover = "Picture/PictureUrl1 ne null";
+    let categoryStr = refCatacory.current && queryStr();
     const sendData = {
       $top: 30,
       $skip: skip,
-      $filter: chainStr([nameStr, monthStr, yearStr, noCover]),
+      $filter: chainStr([nameStr, monthStr, yearStr, noCover, categoryStr]),
       city: refCity.current?.value,
     };
     console.log("sendData", sendData);
@@ -203,11 +241,8 @@ function Index() {
   };
 
   useEffect(() => {
-    // setInterval(() => {
-    //   console.warn("searchData", searchData);
-    // }, 2000);
     window.onscroll = () => {
-      if (document.body.offsetHeight - window.innerHeight < 5) return;
+      if (document.body.offsetHeight - window.innerHeight < 5 || endFlag || refShowCategory.current) return;
       if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight) {
         console.log("is-bottom====", keyword);
         !pennding && loadMore();
@@ -220,22 +255,31 @@ function Index() {
     };
     return () => {
       console.log("destroy!!!!");
-      // dispatch(setSearchData({ type: searchData.type }));
-      window.scrollTo(0, 0);
     };
   }, []);
 
   useEffect(() => {
     if (searchData.keyword) {
       setKeyword(searchData.keyword);
+      setShowCategory(false);
+      getData();
+    } else {
+      setShowCategory(true);
     }
+    setCategory("");
     setResult([]);
     getCrumb();
-    getData();
     console.log("searchData--change", searchData);
   }, [searchData]);
 
-  console.log("render~~~~~~~~", city);
+  useEffect(() => {
+    if (category) {
+      setShowCategory(false);
+      setResult([]);
+      getData();
+    }
+  }, [category]);
+
   return (
     <SearchPageComp>
       {pennding && <Loading />}
@@ -259,27 +303,30 @@ function Index() {
           搜尋
         </button>
       </div>
-      <SearchResultComp>
-        <h3 className="search-result-text">
-          搜尋結果
-          <span>
-            共有
-            <strong>{result.length}</strong>筆
-          </span>
-        </h3>
-        <div className="search-result-list">
-          {result.map((vo) => {
-            return <ListCard key={vo.ID} data={{ ...vo, type: searchData.type }} />;
-          })}
-          {result.length === 0 && (
-            <div className="no-data">
-              　<FontAwesomeIcon icon={faFileAlt} />
-              <p>查無資料</p>
-              <p>請重新查詢</p>
-            </div>
-          )}
-        </div>
-      </SearchResultComp>
+      {refShowCategory.current && <Category type={searchData.type} setCategory={setCategory} />}
+      {!refShowCategory.current && (
+        <SearchResultComp>
+          <h3 className="search-result-text">
+            搜尋結果
+            <span>
+              共有
+              <strong>{result.length}</strong>筆
+            </span>
+          </h3>
+          <div className="search-result-list">
+            {result.map((vo) => {
+              return <ListCard key={vo.ID} data={{ ...vo, type: searchData.type }} />;
+            })}
+            {result.length === 0 && (
+              <div className="no-data">
+                　<FontAwesomeIcon icon={faFileAlt} />
+                <p>查無資料</p>
+                <p>請重新查詢</p>
+              </div>
+            )}
+          </div>
+        </SearchResultComp>
+      )}
     </SearchPageComp>
   );
 }

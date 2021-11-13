@@ -28,6 +28,21 @@ const TitleComp = styled.div`
   .main-title {
     font-size: 36px;
     line-height: 50px;
+    @media (max-width: 980px) {
+      font-size: 32px;
+    }
+    .taiwan {
+      position: relative;
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: -3px;
+        height: 2px;
+        background-color: var(--green_light);
+        width: 100%;
+        left: 0;
+      }
+    }
   }
   .sub-title {
     font-size: 16px;
@@ -83,7 +98,9 @@ function Search() {
   return (
     <TitleComp>
       <div className="area">
-        <p className="main-title">探索台灣之美</p>
+        <p className="main-title">
+          探索<span className="taiwan">台灣之美</span>
+        </p>
         <p className="main-title">讓我們更親近這片土地</p>
         <p className="sub-title">
           <FontAwesomeIcon className="mark" icon={faMapMarkerAlt} />

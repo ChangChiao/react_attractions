@@ -82,7 +82,7 @@ function ListItem({ data }) {
         <p className="bottom-info">
           <span className="location">
             <FontAwesomeIcon className="mark" icon={faMapMarkerAlt} />
-            南投縣 {data.Address}
+            {data.Address}
           </span>
           <span className="intro">
             詳細介紹
