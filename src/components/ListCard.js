@@ -63,7 +63,7 @@ function ListCard({ data }) {
       <p className="item-title">{data.Name}</p>
       <p className="location">
         <FontAwesomeIcon className="mark" icon={faMapMarkerAlt} />
-        {data.Address && data.Address.substring(0, 3)}
+        {(data.Address && data.Address.substring(0, 3)) || data.City}
       </p>
     </Card>
   );

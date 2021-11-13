@@ -20,6 +20,7 @@ const TitleComp = styled.div`
   }
   .area {
     width: 40%;
+    padding-left: 20px;
     @media (max-width: 980px) {
       width: 100%;
     }

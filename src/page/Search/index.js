@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import CitySelect from "../../components/CitySelect";
 import ListCard from "../../components/ListCard";
@@ -93,12 +93,30 @@ function Index() {
   let skip = 0;
   const dispatch = useDispatch();
   const [result, setResult] = useState([]);
-  const [city, setCity] = useState("");
-  const [str, setStr] = useState("");
-  const [keyword, setKeyword] = useState("");
-  const [startDate, setStartDate] = useState(new Date());
+  const [city, _setCity] = useState("");
+  const [keyword, _setKeyword] = useState(null);
+  const [startDate, _setStartDate] = useState(new Date());
   const [pennding, setPennding] = useState(false);
   const searchData = useSelector((state) => state.search.searchData);
+  const refKeyword = useRef(keyword);
+  const refStartDate = useRef(startDate);
+  const refCity = useRef(city);
+
+  const setKeyword = (data) => {
+    refKeyword.current = data;
+    _setKeyword(data);
+  };
+
+  const setStartDate = (data) => {
+    refStartDate.current = data;
+    _setStartDate(data);
+  };
+
+  const setCity = (data) => {
+    refCity.current = data;
+    _setCity(data);
+  };
+
   const placeholderConfig = {
     activity: "你想玩什麼？",
     spot: "你想去哪裡？",
@@ -111,19 +129,17 @@ function Index() {
   };
 
   const saveSearchData = () => {
-    const dataObj = {
-      keyword,
-      city: city?.value,
-      type: searchData.type,
-    };
-    console.log("dataObj", dataObj);
     resetSearch();
-    dispatch(setSearchData(dataObj));
+    getData();
+    // dispatch(setSearchData(dataObj));
   };
 
   const resetSearch = () => {
     skip = 0;
     endFlag = false;
+    // setStartDate(new Date());
+    // setKeyword("");
+    // setCity({});
     setResult([]);
   };
 
@@ -138,18 +154,19 @@ function Index() {
   };
 
   const getData = async () => {
+    console.log("refKeyword.current", refKeyword.current);
     let list = [];
-    const { keyword, city } = searchData;
-    let [month, year] = searchData.type === "activity" ? transDate(startDate) : [];
-    let nameStr = keyword ? `Name eq '${keyword}'` : "";
+    let [month, year] = searchData.type === "activity" ? transDate(refStartDate.current) : [];
+    let nameStr = refKeyword.current ? `contains(Name,'${keyword}')` : "";
     let monthStr = month ? `month(StartTime) eq ${month}` : "";
     let yearStr = year ? `year(StartTime) eq ${year}` : "";
     const sendData = {
       $top: 30,
       $skip: skip,
       $filter: chainStr([nameStr, monthStr, yearStr]),
-      city: city,
+      city: refCity.current?.value,
     };
+    console.log("sendData", sendData);
     setPennding(true);
     try {
       switch (searchData.type) {
@@ -170,6 +187,8 @@ function Index() {
         setResult((prevState) => [...prevState, ...list]);
       }
     } catch (error) {
+      console.error("error");
+      endFlag = true;
       setPennding(false);
     }
   };
@@ -177,30 +196,45 @@ function Index() {
   const loadMore = () => {
     if (endFlag) return;
     skip += 30;
+    console.log("search-data==loadMore", keyword);
+    console.log("search-data==loadMore", city);
     getData();
   };
 
-  const handleChange = (event) => {
-    setStr(event.target.value);
-  };
-
   useEffect(() => {
-    window.onscroll = function () {
+    // setInterval(() => {
+    //   console.warn("searchData", searchData);
+    // }, 2000);
+    window.onscroll = () => {
+      if (document.body.offsetHeight - window.innerHeight < 5) return;
       if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight) {
-        console.log("is-bottom");
+        console.log("is-bottom====", keyword);
         !pennding && loadMore();
       }
     };
+    window.onbeforeunload = function (e) {
+      console.log("reload!!");
+      dispatch(setSearchData({ type: searchData.type, keyword: "" }));
+      window.scrollTo(0, 0);
+    };
     return () => {
-      dispatch(setSearchData({ type: searchData.type }));
+      console.log("destroy!!!!");
+      // dispatch(setSearchData({ type: searchData.type }));
+      window.scrollTo(0, 0);
     };
   }, []);
 
   useEffect(() => {
+    if (searchData.keyword) {
+      setKeyword(searchData.keyword);
+    }
+    setResult([]);
     getCrumb();
     getData();
+    console.log("searchData--change", searchData);
   }, [searchData]);
 
+  console.log("render~~~~~~~~", city);
   return (
     <SearchPageComp>
       {pennding && <Loading />}
@@ -213,6 +247,9 @@ function Index() {
           placeholder={`${placeholderConfig[searchData.type]}請輸入關鍵字`}
           value={keyword}
           onChange={(e) => {
+            {
+              /* refKeyword.current = e.target.value */
+            }
             setKeyword(e.target.value);
           }}
         />
