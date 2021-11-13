@@ -4,6 +4,7 @@ import { persistStore } from "redux-persist";
 import { Provider } from "react-redux";
 import store from "./store";
 import DefaultTemp from "./components/DefaultTemp";
+import ScrollToTop from "./components/ScrollToTop";
 import Index from "./page/Index/index";
 import Attraction from "./page/Attraction";
 import Festival from "./page/Festival";
@@ -19,12 +20,14 @@ function App() {
       <PersistGate loading={null} persistor={persistor}>
         <div className="App">
           <DefaultTemp>
-            <Route path="/" exact component={Index} />
-            <Route path="/search" exact component={Search} />
-            <Route path="/attraction" component={Attraction} />
-            <Route path="/festival" component={Festival} />
-            <Route path="/food" component={Food} />
-            <Route path="/intro" component={Intro} />
+            <ScrollToTop>
+              <Route path="/" exact component={Index} />
+              <Route path="/search" exact component={Search} />
+              <Route path="/attraction" component={Attraction} />
+              <Route path="/festival" component={Festival} />
+              <Route path="/food" component={Food} />
+              <Route path="/intro" component={Intro} />
+            </ScrollToTop>
           </DefaultTemp>
           <ToastContainer />
         </div>

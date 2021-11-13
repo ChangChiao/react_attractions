@@ -160,10 +160,11 @@ function Index() {
     let nameStr = refKeyword.current ? `contains(Name,'${keyword}')` : "";
     let monthStr = month ? `month(StartTime) eq ${month}` : "";
     let yearStr = year ? `year(StartTime) eq ${year}` : "";
+    let noCover = "Picture/PictureUrl1 ne null";
     const sendData = {
       $top: 30,
       $skip: skip,
-      $filter: chainStr([nameStr, monthStr, yearStr]),
+      $filter: chainStr([nameStr, monthStr, yearStr, noCover]),
       city: refCity.current?.value,
     };
     console.log("sendData", sendData);

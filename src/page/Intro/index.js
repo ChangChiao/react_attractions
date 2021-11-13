@@ -105,6 +105,7 @@ function Index() {
     const sendData = {
       $top: 4,
       $skip: randomNum(30),
+      $filter: "Picture/PictureUrl1 ne null",
     };
     let title = "";
     let result = [];
