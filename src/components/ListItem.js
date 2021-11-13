@@ -19,7 +19,7 @@ const ListComp = styled.div`
   height: 120px;
   @media (max-width: 980px) {
     width: 100%;
-    height: 200px;
+    height: 250px;
   }
   &:hover {
     .cover {

@@ -6,12 +6,13 @@ import store from "./store";
 import DefaultTemp from "./components/DefaultTemp";
 import ScrollToTop from "./components/ScrollToTop";
 import Index from "./page/Index/index";
-import Attraction from "./page/Attraction";
-import Festival from "./page/Festival";
-import Food from "./page/Food";
 import Intro from "./page/Intro";
 import Search from "./page/Search";
 import { ToastContainer } from "react-toastify";
+import "./assets/font/NotoSans-Bold.ttf";
+import "./assets/font/NotoSans-BoldItalic.ttf";
+import "./assets/font/NotoSans-Italic.ttf";
+import "./assets/font/NotoSans-Regular.ttf";
 let persistor = persistStore(store);
 
 function App() {
@@ -23,9 +24,6 @@ function App() {
             <ScrollToTop>
               <Route path="/" exact component={Index} />
               <Route path="/search" exact component={Search} />
-              <Route path="/attraction" component={Attraction} />
-              <Route path="/festival" component={Festival} />
-              <Route path="/food" component={Food} />
               <Route path="/intro" component={Intro} />
             </ScrollToTop>
           </DefaultTemp>

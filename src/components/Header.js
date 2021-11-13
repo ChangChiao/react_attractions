@@ -131,6 +131,7 @@ function Header() {
   };
 
   const goHome = () => {
+    setActive(false);
     history.push("/");
   };
 
@@ -150,8 +151,8 @@ function Header() {
   return (
     <>
       <HeaderComp>
-        {/* <img src="" alt=""/> */}
-        <h1 onClick={goHome}>台灣走走 • Tai Walk</h1>
+        <img onClick={goHome} src={process.env.PUBLIC_URL + `/image/logo.png`} />
+        {/* <h1 onClick={goHome}>台灣走走 • Tai Walk</h1> */}
         <MenuComp>
           {MENU_LIST.map((vo) => {
             return (
@@ -168,7 +169,7 @@ function Header() {
         </MenuComp>
       </HeaderComp>
       <MobileComp>
-        <h1 onClick={goHome}>台灣走走 • Tai Walk</h1>
+        <img onClick={goHome} src={process.env.PUBLIC_URL + `/image/logo-mobile.png`} />
         <HamburgerComp active={active} onClick={controlMenu}>
           <span className="line"></span>
           <span className="line"></span>
