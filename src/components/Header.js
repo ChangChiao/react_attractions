@@ -26,6 +26,9 @@ const HeaderComp = styled.div`
   h1 {
     ${titleStyle}
   }
+  .logo {
+    cursor: pointer;
+  }
 `;
 
 const MenuComp = styled.ul`
@@ -53,6 +56,10 @@ const MobileComp = styled.header`
   display: none;
   h1 {
     ${titleStyle}
+  }
+  .logo {
+    cursor: pointer;
+    padding-top: 10px;
   }
   @media (max-width: 980px) {
     display: block;
@@ -151,7 +158,7 @@ function Header() {
   return (
     <>
       <HeaderComp>
-        <img onClick={goHome} src={process.env.PUBLIC_URL + `/image/logo.png`} />
+        <img className="logo" onClick={goHome} src={process.env.PUBLIC_URL + `/image/logo.png`} />
         {/* <h1 onClick={goHome}>台灣走走 • Tai Walk</h1> */}
         <MenuComp>
           {MENU_LIST.map((vo) => {
@@ -169,7 +176,7 @@ function Header() {
         </MenuComp>
       </HeaderComp>
       <MobileComp>
-        <img onClick={goHome} src={process.env.PUBLIC_URL + `/image/logo-mobile.png`} />
+        <img className="logo" onClick={goHome} src={process.env.PUBLIC_URL + `/image/logo-mobile.png`} />
         <HamburgerComp active={active} onClick={controlMenu}>
           <span className="line"></span>
           <span className="line"></span>

@@ -16,9 +16,13 @@ const CategoryComp = styled.div`
       justify-content: center;
       margin-bottom: 20px;
       width: 23%;
-      border-radius: 20px;
-      height: 100px;
+      /* border-radius: 20px; */
+      height: 180px;
+      background-size: 100%;
       font-size: 20px;
+      @media (max-width: 980px) {
+        width: 100%;
+      }
       p {
         color: #fff;
         transition: 0.2s;

@@ -19,7 +19,7 @@ const ListComp = styled.div`
   height: 120px;
   @media (max-width: 980px) {
     width: 100%;
-    height: 250px;
+    height: 200px;
   }
   &:hover {
     .cover {
@@ -82,7 +82,7 @@ function ListItem({ data }) {
         <p className="bottom-info">
           <span className="location">
             <FontAwesomeIcon className="mark" icon={faMapMarkerAlt} />
-            南投縣 {data.Address}
+            {data.Address}
           </span>
           <span className="intro">
             詳細介紹

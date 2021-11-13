@@ -29,7 +29,7 @@ const SearchPageComp = styled.div`
       margin-right: 5px;
       @media (max-width: 980px) {
         width: 100%;
-        margin: 10px 0;
+        margin-bottom: 10px;
       }
     }
     .react-datepicker-wrapper {
@@ -41,9 +41,8 @@ const SearchPageComp = styled.div`
       }
       @media (max-width: 980px) {
         margin-top: 10px;
-        height: 50px;
+        width: 100% !important;
         .input {
-          width: 100% !important;
           height: 44px;
         }
       }
@@ -112,13 +111,14 @@ function Index() {
   const [keyword, _setKeyword] = useState("");
   const [category, _setCategory] = useState("");
   const [startDate, _setStartDate] = useState(new Date());
+  const [showCategory, _setShowCategory] = useState(true);
   const [pennding, setPennding] = useState(false);
-  const [showCategory, setShowCategory] = useState(true);
   const searchData = useSelector((state) => state.search.searchData);
   const refKeyword = useRef(keyword);
   const refStartDate = useRef(startDate);
   const refCity = useRef(city);
   const refCatacory = useRef(category);
+  const refShowCategory = useRef(showCategory);
 
   const setKeyword = (data) => {
     refKeyword.current = data;
@@ -138,6 +138,11 @@ function Index() {
   const setCategory = (data) => {
     refCatacory.current = data;
     _setCategory(data);
+  };
+
+  const setShowCategory = (data) => {
+    refShowCategory.current = data;
+    _setShowCategory(data);
   };
 
   const placeholderConfig = {
@@ -237,7 +242,7 @@ function Index() {
 
   useEffect(() => {
     window.onscroll = () => {
-      if (document.body.offsetHeight - window.innerHeight < 5 || endFlag) return;
+      if (document.body.offsetHeight - window.innerHeight < 5 || endFlag || refShowCategory.current) return;
       if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight) {
         console.log("is-bottom====", keyword);
         !pennding && loadMore();
@@ -270,6 +275,7 @@ function Index() {
   useEffect(() => {
     if (category) {
       setShowCategory(false);
+      setResult([]);
       getData();
     }
   }, [category]);
@@ -297,8 +303,8 @@ function Index() {
           搜尋
         </button>
       </div>
-      {showCategory && <Category type={searchData.type} setCategory={setCategory} />}
-      {!showCategory && (
+      {refShowCategory.current && <Category type={searchData.type} setCategory={setCategory} />}
+      {!refShowCategory.current && (
         <SearchResultComp>
           <h3 className="search-result-text">
             搜尋結果
