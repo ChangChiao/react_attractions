@@ -23,6 +23,7 @@ const TitleComp = styled.div`
     padding-left: 20px;
     @media (max-width: 980px) {
       width: 100%;
+      padding-left: 0px;
     }
   }
   .main-title {
@@ -61,6 +62,7 @@ const TitleComp = styled.div`
     margin-top: 10px;
     @media (max-width: 980px) {
       width: 100%;
+      margin-top: 16px;
     }
   }
   .search-btn {

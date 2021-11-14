@@ -1,25 +1,29 @@
 {
   "files": {
-    "main.css": "https://changchiao.github.io/react_attractions/static/css/main.a7c2d4a0.chunk.css",
-    "main.js": "https://changchiao.github.io/react_attractions/static/js/main.602007e8.chunk.js",
-    "main.js.map": "https://changchiao.github.io/react_attractions/static/js/main.602007e8.chunk.js.map",
-    "runtime-main.js": "https://changchiao.github.io/react_attractions/static/js/runtime-main.cec33a9f.js",
-    "runtime-main.js.map": "https://changchiao.github.io/react_attractions/static/js/runtime-main.cec33a9f.js.map",
+    "main.css": "https://changchiao.github.io/react_attractions/static/css/main.a0afccc0.chunk.css",
+    "main.js": "https://changchiao.github.io/react_attractions/static/js/main.8c211ac2.chunk.js",
+    "main.js.map": "https://changchiao.github.io/react_attractions/static/js/main.8c211ac2.chunk.js.map",
+    "runtime-main.js": "https://changchiao.github.io/react_attractions/static/js/runtime-main.9bbfe617.js",
+    "runtime-main.js.map": "https://changchiao.github.io/react_attractions/static/js/runtime-main.9bbfe617.js.map",
     "static/css/2.c1502b9f.chunk.css": "https://changchiao.github.io/react_attractions/static/css/2.c1502b9f.chunk.css",
-    "static/js/2.19eb058e.chunk.js": "https://changchiao.github.io/react_attractions/static/js/2.19eb058e.chunk.js",
-    "static/js/2.19eb058e.chunk.js.map": "https://changchiao.github.io/react_attractions/static/js/2.19eb058e.chunk.js.map",
-    "static/js/3.403647ba.chunk.js": "https://changchiao.github.io/react_attractions/static/js/3.403647ba.chunk.js",
-    "static/js/3.403647ba.chunk.js.map": "https://changchiao.github.io/react_attractions/static/js/3.403647ba.chunk.js.map",
+    "static/js/2.03f18e55.chunk.js": "https://changchiao.github.io/react_attractions/static/js/2.03f18e55.chunk.js",
+    "static/js/2.03f18e55.chunk.js.map": "https://changchiao.github.io/react_attractions/static/js/2.03f18e55.chunk.js.map",
+    "static/js/3.6504a8eb.chunk.js": "https://changchiao.github.io/react_attractions/static/js/3.6504a8eb.chunk.js",
+    "static/js/3.6504a8eb.chunk.js.map": "https://changchiao.github.io/react_attractions/static/js/3.6504a8eb.chunk.js.map",
     "index.html": "https://changchiao.github.io/react_attractions/index.html",
     "static/css/2.c1502b9f.chunk.css.map": "https://changchiao.github.io/react_attractions/static/css/2.c1502b9f.chunk.css.map",
-    "static/css/main.a7c2d4a0.chunk.css.map": "https://changchiao.github.io/react_attractions/static/css/main.a7c2d4a0.chunk.css.map",
-    "static/js/2.19eb058e.chunk.js.LICENSE.txt": "https://changchiao.github.io/react_attractions/static/js/2.19eb058e.chunk.js.LICENSE.txt"
+    "static/css/main.a0afccc0.chunk.css.map": "https://changchiao.github.io/react_attractions/static/css/main.a0afccc0.chunk.css.map",
+    "static/js/2.03f18e55.chunk.js.LICENSE.txt": "https://changchiao.github.io/react_attractions/static/js/2.03f18e55.chunk.js.LICENSE.txt",
+    "static/media/NotoSans-Bold.66ab2974.ttf": "https://changchiao.github.io/react_attractions/static/media/NotoSans-Bold.66ab2974.ttf",
+    "static/media/NotoSans-BoldItalic.406a212c.ttf": "https://changchiao.github.io/react_attractions/static/media/NotoSans-BoldItalic.406a212c.ttf",
+    "static/media/NotoSans-Italic.4e7f010e.ttf": "https://changchiao.github.io/react_attractions/static/media/NotoSans-Italic.4e7f010e.ttf",
+    "static/media/NotoSans-Regular.fa11626f.ttf": "https://changchiao.github.io/react_attractions/static/media/NotoSans-Regular.fa11626f.ttf"
   },
   "entrypoints": [
-    "static/js/runtime-main.cec33a9f.js",
+    "static/js/runtime-main.9bbfe617.js",
     "static/css/2.c1502b9f.chunk.css",
-    "static/js/2.19eb058e.chunk.js",
-    "static/css/main.a7c2d4a0.chunk.css",
-    "static/js/main.602007e8.chunk.js"
+    "static/js/2.03f18e55.chunk.js",
+    "static/css/main.a0afccc0.chunk.css",
+    "static/js/main.8c211ac2.chunk.js"
   ]
 }

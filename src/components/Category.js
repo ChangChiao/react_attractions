@@ -16,10 +16,12 @@ const CategoryComp = styled.div`
       justify-content: center;
       margin-bottom: 20px;
       width: 23%;
-      /* border-radius: 20px; */
-      height: 180px;
-      background-size: 100%;
+      border-radius: 20px;
+      height: 168px;
       font-size: 20px;
+      background-size: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
       @media (max-width: 980px) {
         width: 100%;
       }
@@ -77,7 +79,7 @@ function Category({ type = "spot", setCategory }) {
 
   return (
     <CategoryComp>
-      <h2 class="title">熱門主題</h2>
+      <h2 className="title">熱門主題</h2>
       <ul className="list">
         {type &&
           categoryList[type].map((vo) => {

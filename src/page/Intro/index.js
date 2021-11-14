@@ -83,7 +83,6 @@ const IntroComp = styled.div`
 `;
 function Index() {
   // const { state } = useLocation();
-  const [data, setData] = useState({});
   const [recommend, setRecommend] = useState({});
   const [tag, setTag] = useState([]);
   const [title, setTitle] = useState("");
@@ -132,7 +131,7 @@ function Index() {
     setTitle(title);
     setRecommend({
       type: introData.type,
-      title: "還有這些不能錯過的" + title,
+      title: "還有這些不能錯過",
       list: result,
     });
   };
