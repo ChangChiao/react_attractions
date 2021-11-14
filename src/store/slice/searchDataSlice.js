@@ -9,7 +9,7 @@ export const searchSlice = createSlice({
   initialState,
   reducers: {
     setSearchData: (state, action) => {
-      console.log("change");
+      // console.log("change", action.payload);
       state.searchData = action.payload;
     },
   },

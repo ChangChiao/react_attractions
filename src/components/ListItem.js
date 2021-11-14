@@ -19,7 +19,6 @@ const ListComp = styled.div`
   height: 120px;
   @media (max-width: 980px) {
     width: 100%;
-    height: 200px;
   }
   &:hover {
     .cover {
@@ -31,6 +30,9 @@ const ListComp = styled.div`
   .cover {
     width: 150px;
     overflow: hidden;
+    @media (max-width: 980px) {
+      width: 80px;
+    }
     img {
       transition-duration: 0.3s;
       width: 100%;
@@ -51,6 +53,11 @@ const ListComp = styled.div`
     width: 90%;
     bottom: 10px;
   }
+  .intro {
+    @media (max-width: 980px) {
+      display: none;
+    }
+  }
 `;
 
 function ListItem({ data }) {
@@ -64,7 +71,6 @@ function ListItem({ data }) {
     dispatch(setIntroData(data));
     history.push({
       pathname: "/intro",
-      // state: data,
     });
   };
   return (

@@ -29,7 +29,7 @@ const SearchPageComp = styled.div`
       margin-right: 5px;
       @media (max-width: 980px) {
         width: 100%;
-        margin-bottom: 10px;
+        margin: ${(props) => (props.type === "activity" ? "4px 0" : "20px 0 10px")};
       }
     }
     .react-datepicker-wrapper {
@@ -191,7 +191,6 @@ function Index() {
   };
 
   const getData = async () => {
-    console.log("refKeyword.current", refKeyword.current);
     let list = [];
     let [month, year] = searchData.type === "activity" ? transDate(refStartDate.current) : [];
     let nameStr = refKeyword.current ? `contains(Name,'${keyword}')` : "";
@@ -235,26 +234,27 @@ function Index() {
   const loadMore = () => {
     if (endFlag) return;
     skip += 30;
-    console.log("search-data==loadMore", keyword);
-    console.log("search-data==loadMore", city);
     getData();
   };
 
+  const scrollEvent = () => {
+    if (document.body.offsetHeight - window.innerHeight < 5 || endFlag || refShowCategory.current) return;
+    if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight) {
+      console.log("is-bottom====", keyword);
+      !pennding && loadMore();
+    }
+  };
+
   useEffect(() => {
-    window.onscroll = () => {
-      if (document.body.offsetHeight - window.innerHeight < 5 || endFlag || refShowCategory.current) return;
-      if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight) {
-        console.log("is-bottom====", keyword);
-        !pennding && loadMore();
-      }
-    };
+    window.addEventListener("scroll", scrollEvent);
     window.onbeforeunload = function (e) {
-      console.log("reload!!");
+      // console.log("reload!!");
       dispatch(setSearchData({ type: searchData.type, keyword: "" }));
       window.scrollTo(0, 0);
     };
     return () => {
-      console.log("destroy!!!!");
+      // console.log("leave!!!!");
+      window.removeEventListener("scroll", scrollEvent);
     };
   }, []);
 
@@ -269,7 +269,7 @@ function Index() {
     setCategory("");
     setResult([]);
     getCrumb();
-    console.log("searchData--change", searchData);
+    // console.log("searchData--change", searchData);
   }, [searchData]);
 
   useEffect(() => {
@@ -281,7 +281,7 @@ function Index() {
   }, [category]);
 
   return (
-    <SearchPageComp>
+    <SearchPageComp type={searchData.type}>
       {pennding && <Loading />}
       <Crumb type={"首頁"} title={getCrumb()} />
       <div className="search-bar">

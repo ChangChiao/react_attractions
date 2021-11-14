@@ -128,7 +128,6 @@ function Header() {
   const history = useHistory();
   const dispatch = useDispatch();
   const handleClick = (path) => {
-    console.log("path", path);
     const dataObj = {
       type: path,
     };
