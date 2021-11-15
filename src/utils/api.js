@@ -19,14 +19,6 @@ const getAuthorizationHeader = () => {
   };
 };
 
-const setConfig = () => {
-  const data = {
-    headers: getAuthorizationHeader(),
-  };
-
-  return data;
-};
-
 const getCity = (data) => {
   const { city = "" } = data;
   delete data.city;
@@ -35,15 +27,33 @@ const getCity = (data) => {
 
 export const getRestaurant = (sendData) => {
   const { cityPath, data } = getCity(sendData);
-  return api.get(API_RESTAURANT + `/${cityPath}`, { params: { ...data } }, setConfig);
+  let config = {
+    headers: getAuthorizationHeader(),
+    params: {
+      ...data,
+    },
+  };
+  return api.get(API_RESTAURANT + `/${cityPath}`, config);
 };
 
 export const getSpot = (sendData) => {
   const { cityPath, data } = getCity(sendData);
-  return api.get(API_SPOT + `/${cityPath}`, { params: { ...data } }, setConfig);
+  let config = {
+    headers: getAuthorizationHeader(),
+    params: {
+      ...data,
+    },
+  };
+  return api.get(API_SPOT + `/${cityPath}`, config);
 };
 
 export const getActivity = (sendData) => {
   const { cityPath, data } = getCity(sendData);
-  return api.get(API_ACTIVITY + `/${cityPath}`, { params: { ...data } }, setConfig);
+  let config = {
+    headers: getAuthorizationHeader(),
+    params: {
+      ...data,
+    },
+  };
+  return api.get(API_ACTIVITY + `/${cityPath}`, config);
 };
