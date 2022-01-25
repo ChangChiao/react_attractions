@@ -1,25 +1,29 @@
 {
   "files": {
-    "main.css": "https://changchiao.github.io/react_attractions/static/css/main.fbf50369.chunk.css",
-    "main.js": "https://changchiao.github.io/react_attractions/static/js/main.6aecd7fc.chunk.js",
-    "main.js.map": "https://changchiao.github.io/react_attractions/static/js/main.6aecd7fc.chunk.js.map",
-    "runtime-main.js": "https://changchiao.github.io/react_attractions/static/js/runtime-main.5693fc88.js",
-    "runtime-main.js.map": "https://changchiao.github.io/react_attractions/static/js/runtime-main.5693fc88.js.map",
-    "static/css/2.68004860.chunk.css": "https://changchiao.github.io/react_attractions/static/css/2.68004860.chunk.css",
-    "static/js/2.b6442eba.chunk.js": "https://changchiao.github.io/react_attractions/static/js/2.b6442eba.chunk.js",
-    "static/js/2.b6442eba.chunk.js.map": "https://changchiao.github.io/react_attractions/static/js/2.b6442eba.chunk.js.map",
-    "static/js/3.bd1ab77b.chunk.js": "https://changchiao.github.io/react_attractions/static/js/3.bd1ab77b.chunk.js",
-    "static/js/3.bd1ab77b.chunk.js.map": "https://changchiao.github.io/react_attractions/static/js/3.bd1ab77b.chunk.js.map",
-    "index.html": "https://changchiao.github.io/react_attractions/index.html",
-    "static/css/2.68004860.chunk.css.map": "https://changchiao.github.io/react_attractions/static/css/2.68004860.chunk.css.map",
-    "static/css/main.fbf50369.chunk.css.map": "https://changchiao.github.io/react_attractions/static/css/main.fbf50369.chunk.css.map",
-    "static/js/2.b6442eba.chunk.js.LICENSE.txt": "https://changchiao.github.io/react_attractions/static/js/2.b6442eba.chunk.js.LICENSE.txt"
+    "main.css": "/static/css/main.e4af298a.chunk.css",
+    "main.js": "/static/js/main.6d08032b.chunk.js",
+    "main.js.map": "/static/js/main.6d08032b.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.e0254a82.js",
+    "runtime-main.js.map": "/static/js/runtime-main.e0254a82.js.map",
+    "static/css/2.c1502b9f.chunk.css": "/static/css/2.c1502b9f.chunk.css",
+    "static/js/2.3fee6a3c.chunk.js": "/static/js/2.3fee6a3c.chunk.js",
+    "static/js/2.3fee6a3c.chunk.js.map": "/static/js/2.3fee6a3c.chunk.js.map",
+    "static/js/3.6504a8eb.chunk.js": "/static/js/3.6504a8eb.chunk.js",
+    "static/js/3.6504a8eb.chunk.js.map": "/static/js/3.6504a8eb.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.c1502b9f.chunk.css.map": "/static/css/2.c1502b9f.chunk.css.map",
+    "static/css/main.e4af298a.chunk.css.map": "/static/css/main.e4af298a.chunk.css.map",
+    "static/js/2.3fee6a3c.chunk.js.LICENSE.txt": "/static/js/2.3fee6a3c.chunk.js.LICENSE.txt",
+    "static/media/NotoSans-Bold.66ab2974.ttf": "/static/media/NotoSans-Bold.66ab2974.ttf",
+    "static/media/NotoSans-BoldItalic.406a212c.ttf": "/static/media/NotoSans-BoldItalic.406a212c.ttf",
+    "static/media/NotoSans-Italic.4e7f010e.ttf": "/static/media/NotoSans-Italic.4e7f010e.ttf",
+    "static/media/NotoSans-Regular.fa11626f.ttf": "/static/media/NotoSans-Regular.fa11626f.ttf"
   },
   "entrypoints": [
-    "static/js/runtime-main.5693fc88.js",
-    "static/css/2.68004860.chunk.css",
-    "static/js/2.b6442eba.chunk.js",
-    "static/css/main.fbf50369.chunk.css",
-    "static/js/main.6aecd7fc.chunk.js"
+    "static/js/runtime-main.e0254a82.js",
+    "static/css/2.c1502b9f.chunk.css",
+    "static/js/2.3fee6a3c.chunk.js",
+    "static/css/main.e4af298a.chunk.css",
+    "static/js/main.6d08032b.chunk.js"
   ]
 }
