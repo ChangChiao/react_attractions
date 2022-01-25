@@ -1,29 +1,29 @@
 {
   "files": {
-    "main.css": "/static/css/main.e4af298a.chunk.css",
-    "main.js": "/static/js/main.6d08032b.chunk.js",
-    "main.js.map": "/static/js/main.6d08032b.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.e0254a82.js",
-    "runtime-main.js.map": "/static/js/runtime-main.e0254a82.js.map",
-    "static/css/2.c1502b9f.chunk.css": "/static/css/2.c1502b9f.chunk.css",
-    "static/js/2.3fee6a3c.chunk.js": "/static/js/2.3fee6a3c.chunk.js",
-    "static/js/2.3fee6a3c.chunk.js.map": "/static/js/2.3fee6a3c.chunk.js.map",
-    "static/js/3.6504a8eb.chunk.js": "/static/js/3.6504a8eb.chunk.js",
-    "static/js/3.6504a8eb.chunk.js.map": "/static/js/3.6504a8eb.chunk.js.map",
-    "index.html": "/index.html",
-    "static/css/2.c1502b9f.chunk.css.map": "/static/css/2.c1502b9f.chunk.css.map",
-    "static/css/main.e4af298a.chunk.css.map": "/static/css/main.e4af298a.chunk.css.map",
-    "static/js/2.3fee6a3c.chunk.js.LICENSE.txt": "/static/js/2.3fee6a3c.chunk.js.LICENSE.txt",
-    "static/media/NotoSans-Bold.66ab2974.ttf": "/static/media/NotoSans-Bold.66ab2974.ttf",
-    "static/media/NotoSans-BoldItalic.406a212c.ttf": "/static/media/NotoSans-BoldItalic.406a212c.ttf",
-    "static/media/NotoSans-Italic.4e7f010e.ttf": "/static/media/NotoSans-Italic.4e7f010e.ttf",
-    "static/media/NotoSans-Regular.fa11626f.ttf": "/static/media/NotoSans-Regular.fa11626f.ttf"
+    "main.css": "./static/css/main.e4af298a.chunk.css",
+    "main.js": "./static/js/main.450d49b7.chunk.js",
+    "main.js.map": "./static/js/main.450d49b7.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.ee781985.js",
+    "runtime-main.js.map": "./static/js/runtime-main.ee781985.js.map",
+    "static/css/2.c1502b9f.chunk.css": "./static/css/2.c1502b9f.chunk.css",
+    "static/js/2.892042b2.chunk.js": "./static/js/2.892042b2.chunk.js",
+    "static/js/2.892042b2.chunk.js.map": "./static/js/2.892042b2.chunk.js.map",
+    "static/js/3.6504a8eb.chunk.js": "./static/js/3.6504a8eb.chunk.js",
+    "static/js/3.6504a8eb.chunk.js.map": "./static/js/3.6504a8eb.chunk.js.map",
+    "index.html": "./index.html",
+    "static/css/2.c1502b9f.chunk.css.map": "./static/css/2.c1502b9f.chunk.css.map",
+    "static/css/main.e4af298a.chunk.css.map": "./static/css/main.e4af298a.chunk.css.map",
+    "static/js/2.892042b2.chunk.js.LICENSE.txt": "./static/js/2.892042b2.chunk.js.LICENSE.txt",
+    "static/media/NotoSans-Bold.66ab2974.ttf": "./static/media/NotoSans-Bold.66ab2974.ttf",
+    "static/media/NotoSans-BoldItalic.406a212c.ttf": "./static/media/NotoSans-BoldItalic.406a212c.ttf",
+    "static/media/NotoSans-Italic.4e7f010e.ttf": "./static/media/NotoSans-Italic.4e7f010e.ttf",
+    "static/media/NotoSans-Regular.fa11626f.ttf": "./static/media/NotoSans-Regular.fa11626f.ttf"
   },
   "entrypoints": [
-    "static/js/runtime-main.e0254a82.js",
+    "static/js/runtime-main.ee781985.js",
     "static/css/2.c1502b9f.chunk.css",
-    "static/js/2.3fee6a3c.chunk.js",
+    "static/js/2.892042b2.chunk.js",
     "static/css/main.e4af298a.chunk.css",
-    "static/js/main.6d08032b.chunk.js"
+    "static/js/main.450d49b7.chunk.js"
   ]
 }
