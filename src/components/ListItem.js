@@ -84,7 +84,7 @@ function ListItem({ data }) {
       </div>
       <div className="text">
         <p className="date">{`${transDate(data.StartTime)}-${transDate(data.EndTime)}`}</p>
-        <p className="item-title">{data.Name}</p>
+        <p className="item-title">{data.ActivityName || data.RestaurantName}</p>
         <p className="bottom-info">
           <span className="location">
             <FontAwesomeIcon className="mark" icon={faMapMarkerAlt} />

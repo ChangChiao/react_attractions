@@ -161,6 +161,11 @@ function Index() {
     return label;
   };
 
+  const getTitle = (data) => {
+    const { ActivityName, ScenicSpotName, RestaurantName } = data;
+    return ActivityName || ScenicSpotName || RestaurantName;
+  };
+
   useEffect(() => {
     // saveState();
   }, []);
@@ -172,9 +177,9 @@ function Index() {
 
   return (
     <IntroComp>
-      <Crumb type={getCrumb()} title={introData.Name} />
+      <Crumb type={getCrumb()} title={getTitle(introData)} />
       <img className="main-cover" src={setImage(introData.Picture)} />
-      <h2 className="intro-title">{introData.Name}</h2>
+      <h2 className="intro-title">{getTitle(introData)}</h2>
       <div className="tag-group">
         {tag.map((vo) => {
           return (
@@ -191,7 +196,7 @@ function Index() {
       <div className="intro">
         <InfoCard />
         <div className="map">
-          <MapIframe Name={introData.Name} />
+          <MapIframe Name={getTitle(introData)} />
           {/* <Map Position={introData.Position} /> */}
         </div>
       </div>

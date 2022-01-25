@@ -183,17 +183,26 @@ function Index() {
   };
 
   const queryStr = () => {
-    const word = ["Name", "Description"];
+    const word = [getQueryName(), "Description"];
     const wordArr = word.map((vo) => {
       return ` contains(${vo}, '${refCatacory.current}') `;
     });
     return wordArr.join("or");
   };
 
+  const getQueryName = () => {
+    if (searchData.type === "activity") {
+      return "ActivityName";
+    } else if (searchData.type === "spot") {
+      return "ScenicSpotName";
+    } else {
+      return "RestaurantName";
+    }
+  };
   const getData = async () => {
     let list = [];
     let [month, year] = searchData.type === "activity" ? transDate(refStartDate.current) : [];
-    let nameStr = refKeyword.current ? `contains(Name,'${keyword}')` : "";
+    let nameStr = refKeyword.current ? `contains(${getQueryName()},'${keyword}')` : "";
     let monthStr = month ? `month(StartTime) eq ${month}` : "";
     let yearStr = year ? `year(StartTime) eq ${year}` : "";
     let noCover = "Picture/PictureUrl1 ne null";
@@ -315,7 +324,7 @@ function Index() {
           </h3>
           <div className="search-result-list">
             {result.map((vo) => {
-              return <ListCard key={vo.ID} data={{ ...vo, type: searchData.type }} />;
+              return <ListCard key={vo.ScenicSpotID} data={{ ...vo, type: searchData.type }} />;
             })}
             {result.length === 0 && (
               <div className="no-data">

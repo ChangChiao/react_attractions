@@ -62,7 +62,7 @@ function Activity() {
       </div>
       <div className="list">
         {list.map((vo) => {
-          return <ListItem key={vo.ID} data={{ ...vo, type: "activity" }} />;
+          return <ListItem key={vo.ActivityID} data={{ ...vo, type: "activity" }} />;
         })}
       </div>
     </ActComp>

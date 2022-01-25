@@ -60,7 +60,7 @@ function ListCard({ data }) {
       <div className="cover">
         <img src={setImage(data.Picture)} />
       </div>
-      <p className="item-title">{data.Name}</p>
+      <p className="item-title">{data.ScenicSpotName || data.RestaurantName}</p>
       <p className="location">
         <FontAwesomeIcon className="mark" icon={faMapMarkerAlt} />
         {data.Address || data.City}
