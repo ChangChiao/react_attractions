@@ -25,7 +25,8 @@ service.interceptors.response.use(
   async (error) => {
     const status = error?.response?.status;
     showToast(`error--${status}`, "error");
-    if (status === 403) {
+    if (status === 403 || status === 429) {
+      localStorage.removeItem("token");
       const res = await getToken();
       if (res.access_token) {
         localStorage.setItem("token", res.access_token);
