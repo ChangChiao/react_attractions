@@ -8,16 +8,6 @@ const DefaultComponent = styled.div`
 `;
 
 function DefaultTemp(props) {
-  const fetchToken = async () => {
-    if (localStorage.getItem("token")) return;
-    const res = await getToken();
-    if (res.access_token) {
-      localStorage.setItem("token", res.access_token);
-    }
-  };
-  useEffect(() => {
-    fetchToken();
-  }, []);
   return (
     <DefaultComponent>
       <Header />

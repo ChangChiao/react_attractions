@@ -27,43 +27,47 @@ const getAuthorizationHeader = () => {
   };
 };
 
+const converStr = (str) => {
+  console.log("str", str);
+  if (str === "") return str;
+  return `/${str}`;
+};
+
 const getCity = (data) => {
   const { city = "" } = data;
   delete data.city;
-  return { cityPath: city, data };
+  console.log("city", city);
+  return { cityPath: converStr(city), data };
 };
 
 export const getRestaurant = (sendData) => {
   const { cityPath, data } = getCity(sendData);
   let config = {
-    headers: getAuthorizationHeader(),
     params: {
       ...data,
     },
   };
-  return api.get(API_RESTAURANT + `/${cityPath}`, config);
+  return api.get(API_RESTAURANT + `${cityPath}`, config);
 };
 
 export const getSpot = (sendData) => {
   const { cityPath, data } = getCity(sendData);
   let config = {
-    headers: getAuthorizationHeader(),
     params: {
       ...data,
     },
   };
-  return api.get(API_SPOT + `/${cityPath}`, config);
+  return api.get(API_SPOT + `${cityPath}`, config);
 };
 
 export const getActivity = (sendData) => {
   const { cityPath, data } = getCity(sendData);
   let config = {
-    headers: getAuthorizationHeader(),
     params: {
       ...data,
     },
   };
-  return api.get(API_ACTIVITY + `/${cityPath}`, config);
+  return api.get(API_ACTIVITY + `${cityPath}`, config);
 };
 
 export const getToken = () => {

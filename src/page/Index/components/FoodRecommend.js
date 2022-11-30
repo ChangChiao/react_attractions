@@ -34,7 +34,7 @@ function FoodRecommend() {
       </div>
       <div className="list">
         {list.map((vo) => {
-          return <ListCard data={vo} />;
+          return <ListCard data={vo} key={vo.RestaurantID} />;
         })}
       </div>
     </FoodRecommendComp>
