@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import Recommend from "../../components/Recommend";
+import Recommend from "../../components/Recommend.jsx";
 // import { useLocation } from "react-router";
 import { useSelector } from "react-redux";
 // import Map from "./components/Map";

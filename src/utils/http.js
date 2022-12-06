@@ -38,7 +38,10 @@ service.interceptors.request.use(
 
 service.interceptors.response.use(
   (response) => {
-    return response.data;
+    if (response.status) {
+      return response.data;
+    }
+    return response;
   },
   async (error) => {
     const status = error?.response?.status;
