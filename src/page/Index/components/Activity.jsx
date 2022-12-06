@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { setSearchData } from "../../../store/slice/searchDataSlice";
-import ListItem from "../../../components/ListItem.jsx";
+import { setSearchData } from "@/store/slice/searchDataSlice";
+import ListItem from "@/components/ListItem.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { getActivity } from "../../../utils/api";
+import { getActivity } from "@/utils/api";
 const ActComp = styled.div`
   margin-top: 30px;
   .title-bar {

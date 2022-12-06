@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { MENU_LIST } from "../global/constant";
-import { setSearchData } from "../store/slice/searchDataSlice";
+import { MENU_LIST } from "@/global/constant";
+import { setSearchData } from "@/store/slice/searchDataSlice";
 
 const titleStyle = css`
   color: var(--green);

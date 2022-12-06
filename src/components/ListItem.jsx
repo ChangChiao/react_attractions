@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { setIntroData } from "../store/slice/introSlice";
+import { setIntroData } from "@/store/slice/introSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt, faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { transDate } from "../utils/common";
+import { transDate } from "@/utils/common";
 import { useHistory } from "react-router-dom";
 const ListComp = styled.div`
   width: 49%;
@@ -60,12 +60,14 @@ const ListComp = styled.div`
   }
 `;
 
+const defaultCover = process.env.PUBLIC_URL + `/image/default/act.jpg`;
+
 function ListItem({ data }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const setImage = (Picture = {}) => {
     const { PictureUrl1 } = Picture;
-    return PictureUrl1 ? PictureUrl1 : process.env.PUBLIC_URL + `/image/default/act.jpg`;
+    return PictureUrl1 ? PictureUrl1 : defaultCover;
   };
   const handleClick = () => {
     dispatch(setIntroData(data));
@@ -80,7 +82,13 @@ function ListItem({ data }) {
       }}
     >
       <div className="cover">
-        <img src={setImage(data.Picture)} />
+        <img
+          src={setImage(data.Picture)}
+          onError={({ currentTarget }) => {
+            currentTarget.onerror = null;
+            currentTarget.src = defaultCover;
+          }}
+        />
       </div>
       <div className="text">
         <p className="date">{`${transDate(data.StartTime)}-${transDate(data.EndTime)}`}</p>

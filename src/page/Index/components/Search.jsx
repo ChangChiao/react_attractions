@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import DropDown from "../../../components/DropDown.jsx";
+import DropDown from "@/components/DropDown.jsx";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt, faSearch } from "@fortawesome/free-solid-svg-icons";
-import { setSearchData } from "../../../store/slice/searchDataSlice";
-import { TYPE_LIST } from "../../../global/constant";
+import { setSearchData } from "@/store/slice/searchDataSlice";
+import { TYPE_LIST } from "@/global/constant";
 
 const TitleComp = styled.div`
   text-align: left;
