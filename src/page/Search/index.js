@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import CitySelect from "../../components/CitySelect";
-import ListCard from "../../components/ListCard";
-import Crumb from "../../components/Crumb";
+import CitySelect from "../../components/CitySelect.jsx";
+import ListCard from "../../components/ListCard.jsx";
+import Crumb from "../../components/Crumb.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faFileAlt } from "@fortawesome/free-solid-svg-icons";
@@ -10,8 +10,8 @@ import { TYPE_LIST } from "../../global/constant";
 import { setSearchData } from "../../store/slice/searchDataSlice";
 import { getActivity, getSpot, getRestaurant } from "../../utils/api";
 import DatePicker from "react-datepicker";
-import Category from "../../components/Category";
-import Loading from "../../components/Loading";
+import Category from "../../components/Category.jsx";
+import Loading from "../../components/Loading.jsx";
 import "react-datepicker/dist/react-datepicker.css";
 
 const SearchPageComp = styled.div`

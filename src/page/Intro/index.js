@@ -4,12 +4,12 @@ import Recommend from "../../components/Recommend.jsx";
 // import { useLocation } from "react-router";
 import { useSelector } from "react-redux";
 // import Map from "./components/Map";
-import MapIframe from "./components/MapIframe";
+import MapIframe from "./components/MapIframe.jsx";
 import { getActivity, getSpot, getRestaurant } from "../../utils/api";
-import InfoCardAct from "../../components/InfoCardAct";
-import InfoCardRest from "../../components/InfoCardRest";
-import InfoCardSpot from "../../components/InfoCardSpot";
-import Crumb from "../../components/Crumb";
+import InfoCardAct from "../../components/InfoCardAct.jsx";
+import InfoCardRest from "../../components/InfoCardRest.jsx";
+import InfoCardSpot from "../../components/InfoCardSpot.jsx";
+import Crumb from "../../components/Crumb.jsx";
 import { TYPE_LIST } from "../../global/constant";
 
 const IntroComp = styled.div`

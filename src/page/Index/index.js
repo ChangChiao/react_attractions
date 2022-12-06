@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Slider from "./components/Slider";
-import Search from "./components/Search";
-import Activity from "./components/Activity";
+import Slider from "./components/Slider.jsx";
+import Search from "./components/Search.jsx";
+import Activity from "./components/Activity.jsx";
 import Recommend from "../../components/Recommend.jsx";
 import { getSpot, getRestaurant } from "../../utils/api";
 

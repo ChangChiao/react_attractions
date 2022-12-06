@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import ListCard from "./ListCard";
+import ListCard from "./ListCard.jsx";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -48,7 +48,6 @@ function Recommend({ title, type, data }) {
         </span>
       </div>
       <div className="list">
-        data {JSON.stringify(data)}
         {data?.map((vo) => {
           return <ListCard data={{ ...vo, type }} key={vo.ScenicSpotID || vo.RestaurantID} />;
         })}

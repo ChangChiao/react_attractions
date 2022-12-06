@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import DropDown from "../../../components/DropDown";
+import DropDown from "../../../components/DropDown.jsx";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";

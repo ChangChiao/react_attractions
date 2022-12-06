@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { setSearchData } from "../../../store/slice/searchDataSlice";
-import ListItem from "../../../components/ListItem";
+import ListItem from "../../../components/ListItem.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { getActivity } from "../../../utils/api";
