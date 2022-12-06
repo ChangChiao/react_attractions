@@ -13,7 +13,7 @@
 ## 簡介
 
 提供使用者查詢台灣地區的景點、餐廳、活動 
-使用React Hook開發﹐搭配styled-component撰寫樣式﹐使用reduxjs/toolki來管理狀態
+使用React Hook開發﹐搭配styled-component撰寫樣式﹐使用reduxjs/toolkit來管理狀態
 
 
 ## 實作功能
