@@ -181,7 +181,7 @@ function Index() {
       <img className="main-cover" src={setImage(introData.Picture)} />
       <h2 className="intro-title">{getTitle(introData)}</h2>
       <div className="tag-group">
-        {tag.map((vo) => {
+        {tag?.map((vo) => {
           return (
             <span className="tag" key={vo}>
               {vo}

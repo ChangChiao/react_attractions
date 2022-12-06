@@ -184,7 +184,7 @@ function Index() {
 
   const queryStr = () => {
     const word = [getQueryName(), "Description"];
-    const wordArr = word.map((vo) => {
+    const wordArr = word?.map((vo) => {
       return ` contains(${vo}, '${refCatacory.current}') `;
     });
     return wordArr.join("or");

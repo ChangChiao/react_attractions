@@ -61,7 +61,7 @@ function Activity() {
         </span>
       </div>
       <div className="list">
-        {list.map((vo) => {
+        {list?.map((vo) => {
           return <ListItem key={vo.ActivityID} data={{ ...vo, type: "activity" }} />;
         })}
       </div>
