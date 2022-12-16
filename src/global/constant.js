@@ -3,6 +3,7 @@ export const API_SPOT = API_URL + "/ScenicSpot";
 export const API_RESTAURANT = API_URL + "/Restaurant";
 export const API_ACTIVITY = API_URL + "/Activity";
 export const API_TDX = "https://tdx.transportdata.tw/auth/realms/TDXConnect/protocol/openid-connect/token";
+export const defaultCover = process.env.PUBLIC_URL + `/image/default/act.jpg`;
 export const TYPE_LIST = [
   { value: "activity", label: "節慶活動" },
   { value: "spot", label: "探索景點" },

@@ -49,7 +49,7 @@ function Recommend({ title, type, data }) {
       </div>
       <div className="list">
         {data?.map((vo) => {
-          return <ListCard data={{ ...vo, type }} key={vo.ScenicSpotID || vo.RestaurantID} />;
+          return <ListCard data={{ ...vo, type }} key={vo.ScenicSpotID ?? vo.RestaurantID} />;
         })}
       </div>
     </RecommendComp>

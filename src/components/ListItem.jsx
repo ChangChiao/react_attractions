@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { transDate } from "@/utils/common";
 import { useHistory } from "react-router-dom";
+import { defaultCover } from "@/global/constant";
 const ListComp = styled.div`
   width: 49%;
   cursor: pointer;
@@ -59,8 +60,6 @@ const ListComp = styled.div`
     }
   }
 `;
-
-const defaultCover = process.env.PUBLIC_URL + `/image/default/act.jpg`;
 
 function ListItem({ data }) {
   const dispatch = useDispatch();

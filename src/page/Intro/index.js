@@ -10,7 +10,7 @@ import InfoCardAct from "../../components/InfoCardAct.jsx";
 import InfoCardRest from "../../components/InfoCardRest.jsx";
 import InfoCardSpot from "../../components/InfoCardSpot.jsx";
 import Crumb from "../../components/Crumb.jsx";
-import { TYPE_LIST } from "../../global/constant";
+import { TYPE_LIST, defaultCover } from "../../global/constant";
 
 const IntroComp = styled.div`
   margin-top: 30px;
@@ -83,19 +83,11 @@ const IntroComp = styled.div`
 `;
 function Index() {
   // const { state } = useLocation();
-  const [recommend, setRecommend] = useState({});
+  const [recommend, setRecommend] = useState([]);
   const [tag, setTag] = useState([]);
   const [title, setTitle] = useState("");
   const introData = useSelector((state) => state.intro.introData);
-  const saveState = () => {
-    // if (!state) {
-    //   const data = localStorage.getItem("intro");
-    //   setData(JSON.parse(data));
-    //   return;
-    // }
-    // localStorage.setItem("intro", JSON.stringify(state));
-    // setData(state);
-  };
+
   const setImage = (Picture = {}) => {
     const { PictureUrl1 } = Picture;
     return PictureUrl1 ? PictureUrl1 : process.env.PUBLIC_URL + `/image/default/act.jpg`;
@@ -129,11 +121,7 @@ function Index() {
     }
 
     setTitle(title);
-    setRecommend({
-      type: introData.type,
-      title: "還有這些不能錯過",
-      list: result,
-    });
+    setRecommend(result);
   };
 
   const InfoCard = () => {
@@ -178,7 +166,14 @@ function Index() {
   return (
     <IntroComp>
       <Crumb type={getCrumb()} title={getTitle(introData)} />
-      <img className="main-cover" src={setImage(introData.Picture)} />
+      <img
+        className="main-cover"
+        src={setImage(introData.Picture)}
+        onError={({ currentTarget }) => {
+          currentTarget.onerror = null;
+          currentTarget.src = defaultCover;
+        }}
+      />
       <h2 className="intro-title">{getTitle(introData)}</h2>
       <div className="tag-group">
         {tag?.map((vo) => {
@@ -200,7 +195,7 @@ function Index() {
           {/* <Map Position={introData.Position} /> */}
         </div>
       </div>
-      <Recommend data={recommend} />
+      <Recommend title="還有這些不能錯過" type={introData.type} data={recommend} />
     </IntroComp>
   );
 }
