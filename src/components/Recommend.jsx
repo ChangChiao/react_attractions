@@ -18,9 +18,9 @@ const RecommendComp = styled.div`
     }
   }
   .list {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
     margin-top: 16px;
     @media (max-width: 980px) {
       display: block;

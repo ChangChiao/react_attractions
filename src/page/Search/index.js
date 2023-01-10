@@ -78,9 +78,9 @@ const SearchResultComp = styled.div`
     }
   }
   .search-result-list {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
     @media (max-width: 980px) {
       display: block;
     }

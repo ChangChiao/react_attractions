@@ -6,7 +6,6 @@ import { setIntroData } from "@/store/slice/introSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 const Card = styled.div`
-  width: 24%;
   cursor: pointer;
   @media (max-width: 980px) {
     width: 100%;
