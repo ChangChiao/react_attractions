@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import DropDown from "@/components/DropDown.jsx";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { setSearchData } from "@/store/slice/searchDataSlice";
@@ -84,7 +84,7 @@ const TitleComp = styled.div`
 
 function Search() {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
   const [keyword, setKeyword] = useState("");
   const [selectedOption, setSelectedOption] = useState(TYPE_LIST[1]);
 
@@ -94,7 +94,7 @@ function Search() {
       type: selectedOption?.value,
     };
     dispatch(setSearchData(dataObj));
-    history.push("/search");
+    navigate("/search");
   };
 
   return (

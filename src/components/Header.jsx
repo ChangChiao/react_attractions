@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { MENU_LIST } from "@/global/constant";
 import { setSearchData } from "@/store/slice/searchDataSlice";
 
@@ -125,7 +125,7 @@ const HamburgerComp = styled.div`
 `;
 function Header() {
   const [active, setActive] = useState(false);
-  const history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleClick = (path) => {
     const dataObj = {
@@ -133,12 +133,12 @@ function Header() {
     };
     dispatch(setSearchData(dataObj));
     setActive(false);
-    history.push("/search");
+    navigate("/search");
   };
 
   const goHome = () => {
     setActive(false);
-    history.push("/");
+    navigate("/");
   };
 
   const controlMenu = () => {
