@@ -1,6 +1,6 @@
 import React from "react";
+import { createPortal } from "react-dom";
 import styled from "styled-components";
-import usePortal from "react-useportal";
 const PopComponent = styled.div`
   position: fixed;
   top: 0;
@@ -69,30 +69,16 @@ const PopComponent = styled.div`
 `;
 
 function Popup(props) {
-  const { Portal } = usePortal({
-    onOpen({ portal }) {
-      portal.current.style.cssText = `
-            /* add your css here for the Portal */
-            position: fixed;
-            width: 100vw;
-            height: 100vh;
-            transform: translate(-50%,-50%);
-            z-index: 1000;
-          `;
-    },
-  });
-
-  return (
-    <Portal>
-      <PopComponent>
-        <div className="mask"></div>
-        <div className={`pop-container block ${props.size}`}>
-          <div className="header">{props.header}</div>
-          <div className="container">{props.children}</div>
-          <div className="footer">{props.footer}</div>
-        </div>
-      </PopComponent>
-    </Portal>
+  return createPortal(
+    <PopComponent>
+      <div className="mask"></div>
+      <div className={`pop-container block ${props.size}`}>
+        <div className="header">{props.header}</div>
+        <div className="container">{props.children}</div>
+        <div className="footer">{props.footer}</div>
+      </div>
+    </PopComponent>,
+    document.body
   );
 }
 

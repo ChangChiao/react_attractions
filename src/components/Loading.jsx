@@ -1,5 +1,5 @@
 import React from "react";
-import usePortal from "react-useportal";
+import { createPortal } from "react-dom";
 import styled from "styled-components";
 
 const LoadComp = styled.div`
@@ -47,23 +47,9 @@ const LoadComp = styled.div`
 `;
 
 function Loading() {
-  const { Portal } = usePortal({
-    onOpen({ portal }) {
-      portal.current.style.cssText = `
-            /* add your css here for the Portal */
-            position: fixed;
-            width: 100vw;
-            height: 100vh;
-            transform: translate(-50%,-50%);
-            z-index: 1000;
-          `;
-    },
-  });
-
-  return (
-    <Portal>
-      <LoadComp>
-        <div className="load-container">
+  return createPortal(
+    <LoadComp>
+      <div className="load-container">
           <div className="l-1 letter">L</div>
           <div className="l-2 letter">o</div>
           <div className="l-3 letter">a</div>
@@ -75,8 +61,8 @@ function Loading() {
           <div className="l-9 letter">.</div>
           <div className="l-10 letter">.</div>
         </div>
-      </LoadComp>
-    </Portal>
+      </LoadComp>,
+    document.body
   );
 }
 

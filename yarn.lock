@@ -2413,7 +2413,6 @@ __metadata:
     react-router-dom: "npm:^7"
     react-select: "npm:^4.3.1"
     react-toastify: "npm:^8.0.2"
-    react-useportal: "npm:^1.0.14"
     redux: "npm:^4.1.1"
     redux-persist: "npm:^6.0.0"
     redux-thunk: "npm:^2.3.0"
@@ -2624,18 +2623,6 @@ __metadata:
     react: ">=16.6.0"
     react-dom: ">=16.6.0"
   checksum: 10c0/afaf835854526065d246532714a3833a7c5fbcf21303e1479008ff6f1ec1ae44ecd151f74f357c60511a1e49de65cb9b81bf4d7858b9ee19e636b9a62a6daaa4
-  languageName: node
-  linkType: hard
-
-"react-useportal@npm:^1.0.14":
-  version: 1.0.14
-  resolution: "react-useportal@npm:1.0.14"
-  dependencies:
-    use-ssr: "npm:^1.0.22"
-  peerDependencies:
-    react: ^16.8.6
-    react-dom: ^16.8.6
-  checksum: 10c0/68ef5a604fe016d6ebaeca1fd91b62e4ddf2621c2379934b27f788b6730cba38c98d44ce425fda9c5fe58511f905536f11658fe3e886059a1e31bd7dc59ce6a6
   languageName: node
   linkType: hard
 
@@ -2994,16 +2981,6 @@ __metadata:
   bin:
     update-browserslist-db: cli.js
   checksum: 10c0/13a00355ea822388f68af57410ce3255941d5fb9b7c49342c4709a07c9f230bbef7f7499ae0ca7e0de532e79a82cc0c4edbd125f1a323a1845bf914efddf8bec
-  languageName: node
-  linkType: hard
-
-"use-ssr@npm:^1.0.22":
-  version: 1.0.24
-  resolution: "use-ssr@npm:1.0.24"
-  peerDependencies:
-    react: ^16.13.1 || ^17.0.0
-    react-dom: ^16.13.1 || ^17.0.0
-  checksum: 10c0/6da724148772c5c5becf7e44d6d86bb3b10c8798e19377d04751408da123efa66afecc1e81127631fab05a40c748b25af47f23b2fbd2923180e8607e7538496e
   languageName: node
   linkType: hard
 
