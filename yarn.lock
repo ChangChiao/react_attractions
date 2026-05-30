@@ -2728,7 +2728,7 @@ __metadata:
     react-dom: "npm:^19"
     react-is: "npm:^19"
     react-redux: "npm:^9"
-    react-responsive-carousel: "npm:^3.2.22"
+    react-responsive-carousel: "npm:^3.2.23"
     react-router-dom: "npm:^7"
     react-select: "npm:^5"
     react-toastify: "npm:^11"
@@ -2820,14 +2820,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-responsive-carousel@npm:^3.2.22":
-  version: 3.2.22
-  resolution: "react-responsive-carousel@npm:3.2.22"
+"react-responsive-carousel@npm:^3.2.23":
+  version: 3.2.23
+  resolution: "react-responsive-carousel@npm:3.2.23"
   dependencies:
     classnames: "npm:^2.2.5"
     prop-types: "npm:^15.5.8"
     react-easy-swipe: "npm:^0.0.21"
-  checksum: 10c0/df2c9a3aebc0a8508186614da1a6be9240313948841dd7639cbeac46e51486c68985215ec4eb3adcc1d3601d16fde6a0dbea800ecd45d47e98abff69357a99bd
+  checksum: 10c0/47957d48898f550cfc7e3517ad755a4dd94ce78630480310db58ec5896de6d6f3c1ed253347432bee889860036a15e32b508cb19b121c4cdd634e78e6fe83064
   languageName: node
   linkType: hard
 

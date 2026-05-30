@@ -20,7 +20,7 @@
     "react-dom": "^19",
     "react-is": "^19",
     "react-redux": "^9",
-    "react-responsive-carousel": "^3.2.22",
+    "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^7",
     "react-select": "^5",
     "react-toastify": "^11",
