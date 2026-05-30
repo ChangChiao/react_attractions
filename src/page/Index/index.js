@@ -4,6 +4,7 @@ import Search from "./components/Search.jsx";
 import Activity from "./components/Activity.jsx";
 import Recommend from "../../components/Recommend.jsx";
 import { getSpot, getRestaurant } from "../../utils/api";
+import { COVER_FILTER } from "../../global/constant";
 
 function Index() {
   const [spotList, setSpotList] = useState([]);
@@ -11,7 +12,7 @@ function Index() {
   const getSpotApi = async () => {
     const sendData = {
       $top: 4,
-      $filter: "Picture/PictureUrl1 ne null",
+      $filter: COVER_FILTER,
     };
     try {
       let result = await getSpot(sendData);
@@ -26,7 +27,7 @@ function Index() {
   const getRestaurantApi = async () => {
     const sendData = {
       $top: 4,
-      $filter: "Picture/PictureUrl1 ne null",
+      $filter: COVER_FILTER,
     };
     try {
       let result = await getRestaurant(sendData);

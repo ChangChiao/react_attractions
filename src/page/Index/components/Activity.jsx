@@ -7,6 +7,7 @@ import ListItem from "@/components/ListItem.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { getActivity } from "@/utils/api";
+import { COVER_FILTER } from "@/global/constant";
 const ActComp = styled.div`
   margin-top: 30px;
   .title-bar {
@@ -35,8 +36,8 @@ function Activity() {
   const getAct = async () => {
     const sendData = {
       $top: 4,
-      $orderBy: "EndTime desc",
-      $filter: "Picture/PictureUrl1 ne null",
+      $orderby: "EndDateTime desc",
+      $filter: COVER_FILTER,
     };
     const result = await getActivity(sendData);
     setList(result);

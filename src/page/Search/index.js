@@ -6,7 +6,7 @@ import Crumb from "@/components/Crumb.jsx";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faFileAlt } from "@fortawesome/free-solid-svg-icons";
-import { TYPE_LIST } from "@/global/constant";
+import { TYPE_LIST, COVER_FILTER } from "@/global/constant";
 import { setSearchData } from "@/store/slice/searchDataSlice";
 import { getActivity, getSpot, getRestaurant } from "@/utils/api";
 import DatePicker from "react-datepicker";
@@ -192,9 +192,9 @@ function Index() {
 
   const getQueryName = () => {
     if (searchData.type === "activity") {
-      return "ActivityName";
+      return "EventName";
     } else if (searchData.type === "spot") {
-      return "ScenicSpotName";
+      return "AttractionName";
     } else {
       return "RestaurantName";
     }
@@ -203,15 +203,15 @@ function Index() {
     let list = [];
     let [month, year] = searchData.type === "activity" ? transDate(refStartDate.current) : [];
     let nameStr = refKeyword.current ? `contains(${getQueryName()},'${keyword}')` : "";
-    let monthStr = month ? `month(StartTime) eq ${month}` : "";
-    let yearStr = year ? `year(StartTime) eq ${year}` : "";
-    let noCover = "Picture/PictureUrl1 ne null";
+    let monthStr = month ? `month(StartDateTime) eq ${month}` : "";
+    let yearStr = year ? `year(StartDateTime) eq ${year}` : "";
+    let noCover = COVER_FILTER;
     let categoryStr = refCatacory.current && queryStr();
     const sendData = {
       $top: 30,
       $skip: skip,
       $filter: chainStr([nameStr, monthStr, yearStr, noCover, categoryStr]),
-      city: refCity.current?.value,
+      city: refCity.current?.label,
     };
     console.log("sendData", sendData);
     setPennding(true);
@@ -324,7 +324,7 @@ function Index() {
           </h3>
           <div className="search-result-list">
             {result.map((vo) => {
-              return <ListCard key={vo.ScenicSpotID} data={{ ...vo, type: searchData.type }} />;
+              return <ListCard key={vo.ScenicSpotID ?? vo.ActivityID ?? vo.RestaurantID} data={{ ...vo, type: searchData.type }} />;
             })}
             {result.length === 0 && (
               <div className="no-data">

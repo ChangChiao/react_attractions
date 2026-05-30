@@ -10,7 +10,7 @@ import InfoCardAct from "../../components/InfoCardAct.jsx";
 import InfoCardRest from "../../components/InfoCardRest.jsx";
 import InfoCardSpot from "../../components/InfoCardSpot.jsx";
 import Crumb from "../../components/Crumb.jsx";
-import { TYPE_LIST, defaultCover } from "../../global/constant";
+import { TYPE_LIST, defaultCover, COVER_FILTER } from "../../global/constant";
 
 const IntroComp = styled.div`
   margin-top: 30px;
@@ -101,7 +101,7 @@ function Index() {
     const sendData = {
       $top: 4,
       $skip: randomNum(30),
-      $filter: "Picture/PictureUrl1 ne null",
+      $filter: COVER_FILTER,
     };
     let title = "";
     let result = [];
@@ -136,10 +136,8 @@ function Index() {
   };
 
   const getTag = () => {
-    let arr = [];
-    for (const [key, value] of Object.entries(introData)) {
-      if (key.includes("Class")) arr.push(`#${value}`);
-    }
+    // V2.1 改用 Tags 陣列（字串）作為標籤，類型欄位已改為代碼陣列不適合直接顯示
+    let arr = Array.isArray(introData.Tags) ? introData.Tags.filter(Boolean).map((vo) => `#${vo}`) : [];
     if (arr.length === 0) arr.push("#熱門打卡");
     setTag(arr);
   };

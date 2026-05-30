@@ -1,8 +1,11 @@
-export const API_URL = "https://tdx.transportdata.tw/api/basic/v2/Tourism";
-export const API_SPOT = API_URL + "/ScenicSpot";
+// 觀光資料 V2.1（V1.0 已於 2026/12/31 下架，改接 V2.1）
+export const API_URL = "https://tdx.transportdata.tw/api/tourism/service/odata/V2/Tourism";
+export const API_SPOT = API_URL + "/Attraction";
 export const API_RESTAURANT = API_URL + "/Restaurant";
-export const API_ACTIVITY = API_URL + "/Activity";
+export const API_ACTIVITY = API_URL + "/Event";
 export const API_TDX = "https://tdx.transportdata.tw/auth/realms/TDXConnect/protocol/openid-connect/token";
+// V2.1 影像改為 Images 陣列，封面篩選由 Picture/PictureUrl1 ne null 改為 any 判斷
+export const COVER_FILTER = "Images/any(i:i/URL ne null)";
 export const defaultCover = process.env.PUBLIC_URL + `/image/default/act.jpg`;
 export const TYPE_LIST = [
   { value: "activity", label: "節慶活動" },
