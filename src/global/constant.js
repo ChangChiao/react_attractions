@@ -6,7 +6,7 @@ export const API_ACTIVITY = API_URL + "/Event";
 export const API_TDX = "https://tdx.transportdata.tw/auth/realms/TDXConnect/protocol/openid-connect/token";
 // V2.1 影像改為 Images 陣列，封面篩選由 Picture/PictureUrl1 ne null 改為 any 判斷
 export const COVER_FILTER = "Images/any(i:i/URL ne null)";
-export const defaultCover = process.env.PUBLIC_URL + `/image/default/act.jpg`;
+export const defaultCover = import.meta.env.BASE_URL + `image/default/act.jpg`;
 export const TYPE_LIST = [
   { value: "activity", label: "節慶活動" },
   { value: "spot", label: "探索景點" },

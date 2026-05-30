@@ -90,7 +90,7 @@ function Category({ type = "spot", setCategory }) {
                 }}
                 className="item"
                 key={vo.cover}
-                style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/image/catagory/${type}/${vo.cover}.png)` }}
+                style={{ backgroundImage: `url(${import.meta.env.BASE_URL}image/catagory/${type}/${vo.cover}.png)` }}
               >
                 <p>{vo.title}</p>
               </li>

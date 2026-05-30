@@ -157,7 +157,7 @@ function Header() {
   return (
     <>
       <HeaderComp>
-        <img className="logo" onClick={goHome} src={process.env.PUBLIC_URL + `/image/logo.png`} />
+        <img className="logo" onClick={goHome} src={import.meta.env.BASE_URL + `image/logo.png`} />
         {/* <h1 onClick={goHome}>台灣走走 • Tai Walk</h1> */}
         <MenuComp>
           {MENU_LIST.map((vo) => {
@@ -175,7 +175,7 @@ function Header() {
         </MenuComp>
       </HeaderComp>
       <MobileComp>
-        <img className="logo" onClick={goHome} src={process.env.PUBLIC_URL + `/image/logo-mobile.png`} />
+        <img className="logo" onClick={goHome} src={import.meta.env.BASE_URL + `image/logo-mobile.png`} />
         <HamburgerComp active={active} onClick={controlMenu}>
           <span className="line"></span>
           <span className="line"></span>

@@ -41,7 +41,7 @@ function ListCard({ data }) {
   const navigate = useNavigate();
   const setImage = (Picture = {}) => {
     const { PictureUrl1 } = Picture;
-    return PictureUrl1 ? PictureUrl1 : process.env.PUBLIC_URL + `/image/default/default.png`;
+    return PictureUrl1 ? PictureUrl1 : import.meta.env.BASE_URL + `image/default/default.png`;
   };
   const handleClick = () => {
     dispatch(setIntroData(data));
