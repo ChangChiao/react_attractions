@@ -1,13 +1,11 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import { getToken } from "./utils/api";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-// import { createBrowserHistory } from "history";
-import { HashRouter, Switch } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import "./style/main.scss";
 import "react-toastify/dist/ReactToastify.css";
-// const history = createBrowserHistory();
 
 const checkToken = async () => {
   if (new Date().getTime() / 1000 <= Number(localStorage.getItem("expireTime"))) {
@@ -22,13 +20,10 @@ const checkToken = async () => {
 
 checkToken();
 
-ReactDOM.render(
+createRoot(document.getElementById("root")).render(
   <HashRouter>
-    <Switch>
-      <App />
-    </Switch>
-  </HashRouter>,
-  document.getElementById("root")
+    <App />
+  </HashRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function
