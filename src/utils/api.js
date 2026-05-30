@@ -106,8 +106,8 @@ export const getActivity = (sendData) => fetchList(API_ACTIVITY, sendData, norma
 export const getToken = () => {
   const data = {
     grant_type: "client_credentials",
-    client_id: process.env.REACT_APP_ID,
-    client_secret: process.env.REACT_APP_KEY,
+    client_id: import.meta.env.VITE_APP_ID,
+    client_secret: import.meta.env.VITE_APP_KEY,
   };
   let config = {
     headers: {
