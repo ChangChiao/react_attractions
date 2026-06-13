@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Slider from "./components/Slider.jsx";
 import Search from "./components/Search.jsx";
 import Activity from "./components/Activity.jsx";

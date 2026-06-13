@@ -1,4 +1,3 @@
-import React from "react";
 import { createRoot } from "react-dom/client";
 import { getToken } from "./utils/api";
 import App from "./App";

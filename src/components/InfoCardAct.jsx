@@ -1,4 +1,3 @@
-import React from "react";
 import { transDate } from "../utils/common";
 function InfoCardAct({ data }) {
   return (

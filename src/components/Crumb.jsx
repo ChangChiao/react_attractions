@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { MENU_LIST } from "@/global/constant";
 import { useDispatch } from "react-redux";
