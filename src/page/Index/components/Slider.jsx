@@ -1,4 +1,3 @@
-import React from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 
@@ -16,7 +15,7 @@ function Slider() {
       {/* <img src={process.env.PUBLIC_URL + `image/banner/0.jpg`} /> */}
       {list.map((vo, index) => {
         return (
-          <div className="carousel-item" key={vo} style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/image/banner/${index}.jpg)` }}>
+          <div className="carousel-item" key={vo} style={{ backgroundImage: `url(${import.meta.env.BASE_URL}image/banner/${index}.jpg)` }}>
             <p className="carousel-title">{vo}</p>
           </div>
         );

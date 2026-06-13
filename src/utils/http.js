@@ -33,7 +33,7 @@ service.interceptors.request.use(
   },
   (error) => {
     return error;
-  }
+  },
 );
 
 service.interceptors.response.use(
@@ -54,7 +54,7 @@ service.interceptors.response.use(
       }
     }
     return Promise.reject(error);
-  }
+  },
 );
 
 export default service;

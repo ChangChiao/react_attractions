@@ -1,8 +1,7 @@
-import React from "react";
 import styled from "styled-components";
 import ListCard from "@/components/ListCard.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMapMarkerAlt, faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 const HotComp = styled.div`
   margin-top: 50px;

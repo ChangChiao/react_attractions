@@ -1,31 +1,5 @@
 import api from "../utils/http";
 import { API_SPOT, API_RESTAURANT, API_ACTIVITY, API_TDX } from "../global/constant";
-import jsSHA from "jssha";
-
-// const getAuthorizationHeader = () => {
-//   let AppID = process.env.REACT_APP_ID;
-//   let AppKey = process.env.REACT_APP_KEY;
-
-//   const GMTString = new Date().toGMTString();
-//   const ShaObj = new jsSHA("SHA-1", "TEXT");
-//   ShaObj.setHMACKey(AppKey, "TEXT");
-//   ShaObj.update("x-date: " + GMTString);
-//   let HMAC = ShaObj.getHMAC("B64");
-//   let Authorization = `hmac username="${AppID}", algorithm="hmac-sha1", headers="x-date", signature="${HMAC}"`;
-//   return {
-//     Authorization: Authorization,
-//     "X-Date": GMTString,
-//     "Content-Type": "application/x-www-form-urlencoded",
-//   };
-// };
-
-const getAuthorizationHeader = () => {
-  const token = localStorage.getItem("token");
-  return {
-    authorization: `Bearer ${token}`,
-    "Content-Type": "application/x-www-form-urlencoded",
-  };
-};
 
 // 將多個 OData 條件以 and 串接（忽略空字串）
 const mergeFilter = (...parts) => parts.filter(Boolean).join(" and ");
@@ -106,8 +80,8 @@ export const getActivity = (sendData) => fetchList(API_ACTIVITY, sendData, norma
 export const getToken = () => {
   const data = {
     grant_type: "client_credentials",
-    client_id: process.env.REACT_APP_ID,
-    client_secret: process.env.REACT_APP_KEY,
+    client_id: import.meta.env.VITE_APP_ID,
+    client_secret: import.meta.env.VITE_APP_KEY,
   };
   let config = {
     headers: {

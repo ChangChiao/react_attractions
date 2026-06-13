@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { MENU_LIST } from "@/global/constant";
 import { setSearchData } from "@/store/slice/searchDataSlice";
 
@@ -125,7 +125,7 @@ const HamburgerComp = styled.div`
 `;
 function Header() {
   const [active, setActive] = useState(false);
-  const history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleClick = (path) => {
     const dataObj = {
@@ -133,12 +133,12 @@ function Header() {
     };
     dispatch(setSearchData(dataObj));
     setActive(false);
-    history.push("/search");
+    navigate("/search");
   };
 
   const goHome = () => {
     setActive(false);
-    history.push("/");
+    navigate("/");
   };
 
   const controlMenu = () => {
@@ -157,7 +157,7 @@ function Header() {
   return (
     <>
       <HeaderComp>
-        <img className="logo" onClick={goHome} src={process.env.PUBLIC_URL + `/image/logo.png`} />
+        <img className="logo" onClick={goHome} src={import.meta.env.BASE_URL + `image/logo.png`} />
         {/* <h1 onClick={goHome}>台灣走走 • Tai Walk</h1> */}
         <MenuComp>
           {MENU_LIST.map((vo) => {
@@ -175,7 +175,7 @@ function Header() {
         </MenuComp>
       </HeaderComp>
       <MobileComp>
-        <img className="logo" onClick={goHome} src={process.env.PUBLIC_URL + `/image/logo-mobile.png`} />
+        <img className="logo" onClick={goHome} src={import.meta.env.BASE_URL + `image/logo-mobile.png`} />
         <HamburgerComp active={active} onClick={controlMenu}>
           <span className="line"></span>
           <span className="line"></span>

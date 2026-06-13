@@ -1,8 +1,4 @@
-import store from "../store";
 import { toast } from "react-toastify";
-import { createBrowserHistory } from "history";
-
-// const history = createBrowserHistory({ forceRefresh: true });
 
 export const showToast = (msg, type = "success") => {
   if (msg) {

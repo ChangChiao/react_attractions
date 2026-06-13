@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import styled from "styled-components";
 import Header from "./Header.jsx";
 import Footer from "./Footer.jsx";

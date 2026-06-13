@@ -1,11 +1,10 @@
-import React from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { setIntroData } from "@/store/slice/introSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { transDate } from "@/utils/common";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { defaultCover } from "@/global/constant";
 const ListComp = styled.div`
   width: 49%;
@@ -63,16 +62,14 @@ const ListComp = styled.div`
 
 function ListItem({ data }) {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
   const setImage = (Picture = {}) => {
     const { PictureUrl1 } = Picture;
     return PictureUrl1 ? PictureUrl1 : defaultCover;
   };
   const handleClick = () => {
     dispatch(setIntroData(data));
-    history.push({
-      pathname: "/intro",
-    });
+    navigate("/intro");
   };
   return (
     <ListComp

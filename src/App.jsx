@@ -1,4 +1,4 @@
-import { Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
 import { Provider } from "react-redux";
@@ -22,9 +22,11 @@ function App() {
         <div className="App">
           <DefaultTemp>
             <ScrollToTop>
-              <Route path="/" exact component={Index} />
-              <Route path="/search" exact component={Search} />
-              <Route path="/intro" component={Intro} />
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/search" element={<Search />} />
+                <Route path="/intro" element={<Intro />} />
+              </Routes>
             </ScrollToTop>
           </DefaultTemp>
           <ToastContainer />

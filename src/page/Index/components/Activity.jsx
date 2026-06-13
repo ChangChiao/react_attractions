@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { setSearchData } from "@/store/slice/searchDataSlice";
 import ListItem from "@/components/ListItem.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -30,7 +30,7 @@ const ActComp = styled.div`
 `;
 
 function Activity() {
-  const history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [list, setList] = useState([]);
   const getAct = async () => {
@@ -47,7 +47,7 @@ function Activity() {
       type: "activity",
     };
     dispatch(setSearchData(dataObj));
-    history.push("/search");
+    navigate("/search");
   };
   useEffect(() => {
     getAct();

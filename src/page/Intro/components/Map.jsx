@@ -1,4 +1,3 @@
-import React from "react";
 import GoogleMapReact from "google-map-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
@@ -10,7 +9,7 @@ function Map({ Position = {} }) {
     <div style={{ height: "100%", width: "100%" }}>
       <GoogleMapReact
         yesIWantToUseGoogleMapApiInternals
-        bootstrapURLKeys={{ key: process.env.REACT_GOOGLE_KEY }}
+        bootstrapURLKeys={{ key: import.meta.env.VITE_GOOGLE_KEY }}
         defaultCenter={{
           lat: Position.PositionLat || "22.63",
           lng: Position.PositionLon || "121.5073",

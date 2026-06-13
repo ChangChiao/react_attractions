@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Recommend from "../../components/Recommend.jsx";
 // import { useLocation } from "react-router";
@@ -90,7 +90,7 @@ function Index() {
 
   const setImage = (Picture = {}) => {
     const { PictureUrl1 } = Picture;
-    return PictureUrl1 ? PictureUrl1 : process.env.PUBLIC_URL + `/image/default/act.jpg`;
+    return PictureUrl1 ? PictureUrl1 : import.meta.env.BASE_URL + `image/default/act.jpg`;
   };
 
   const randomNum = (x) => {

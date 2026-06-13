@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import CitySelect from "@/components/CitySelect.jsx";
 import ListCard from "@/components/ListCard.jsx";
@@ -233,7 +233,7 @@ function Index() {
       } else {
         setResult((prevState) => [...prevState, ...list]);
       }
-    } catch (error) {
+    } catch {
       console.error("error");
       endFlag = true;
       setPennding(false);
@@ -256,7 +256,7 @@ function Index() {
 
   useEffect(() => {
     window.addEventListener("scroll", scrollEvent);
-    window.onbeforeunload = function (e) {
+    window.onbeforeunload = function () {
       // console.log("reload!!");
       dispatch(setSearchData({ type: searchData.type, keyword: "" }));
       window.scrollTo(0, 0);
@@ -328,7 +328,7 @@ function Index() {
             })}
             {result.length === 0 && (
               <div className="no-data">
-                　<FontAwesomeIcon icon={faFileAlt} />
+                <FontAwesomeIcon icon={faFileAlt} />
                 <p>查無資料</p>
                 <p>請重新查詢</p>
               </div>

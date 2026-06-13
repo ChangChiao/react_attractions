@@ -1,5 +1,3 @@
-import React from "react";
-
 function InfoCardSpot({ data }) {
   return (
     <div className="detail">

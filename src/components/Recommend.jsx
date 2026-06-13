@@ -1,8 +1,7 @@
-import React from "react";
 import styled from "styled-components";
 import ListCard from "./ListCard.jsx";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { setSearchData } from "@/store/slice/searchDataSlice";
@@ -29,14 +28,14 @@ const RecommendComp = styled.div`
 `;
 
 function Recommend({ title, type, data }) {
-  const history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleClick = () => {
     const dataObj = {
       type,
     };
     dispatch(setSearchData(dataObj));
-    history.push("/search");
+    navigate("/search");
   };
   return (
     <RecommendComp>
