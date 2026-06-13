@@ -22,7 +22,7 @@ checkToken();
 createRoot(document.getElementById("root")).render(
   <HashRouter>
     <App />
-  </HashRouter>
+  </HashRouter>,
 );
 
 // If you want to start measuring performance in your app, pass a function

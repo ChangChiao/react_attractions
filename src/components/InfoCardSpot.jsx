@@ -1,4 +1,3 @@
-
 function InfoCardSpot({ data }) {
   return (
     <div className="detail">

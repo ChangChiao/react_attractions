@@ -1,4 +1,3 @@
-
 function InfoCardRest({ data }) {
   return (
     <div className="detail">

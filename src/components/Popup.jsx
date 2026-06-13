@@ -77,7 +77,7 @@ function Popup(props) {
         <div className="footer">{props.footer}</div>
       </div>
     </PopComponent>,
-    document.body
+    document.body,
   );
 }
 
